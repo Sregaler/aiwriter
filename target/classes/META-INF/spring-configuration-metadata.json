@@ -1,0 +1,162 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.bean.NewTag",
+      "name": "NewTag",
+      "type": "com.hdumil.aiwriter.base.controller.baidu.bean.NewTag"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.CustomizedController",
+      "name": "baiduAPI.Customized",
+      "type": "com.hdumil.aiwriter.base.controller.baidu.CustomizedController"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.NLPController",
+      "name": "baiduAPI.NLP",
+      "type": "com.hdumil.aiwriter.base.controller.baidu.NLPController"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.RetrievalController",
+      "name": "baiduAPI.Retrieval",
+      "type": "com.hdumil.aiwriter.base.controller.baidu.RetrievalController"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.ReviewController",
+      "name": "baiduAPI.Review",
+      "type": "com.hdumil.aiwriter.base.controller.baidu.ReviewController"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.bean.NewTag",
+      "name": "NewTag.basketball-team",
+      "type": "java.util.List<java.util.HashMap<java.lang.String,java.util.List<java.lang.String>>>"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.bean.NewTag",
+      "name": "NewTag.bond-code",
+      "type": "java.util.HashMap<java.lang.String,java.lang.String>"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.bean.NewTag",
+      "name": "NewTag.football-team",
+      "type": "java.util.List<java.util.HashMap<java.lang.String,java.util.List<java.lang.String>>>"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.bean.NewTag",
+      "name": "NewTag.province",
+      "type": "java.util.List<java.util.HashMap<java.lang.String,java.util.List<java.lang.String>>>"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.bean.NewTag",
+      "name": "NewTag.stock-code",
+      "type": "java.util.HashMap<java.lang.String,java.lang.String>"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.bean.NewTag",
+      "name": "NewTag.symbol",
+      "type": "java.util.HashMap<java.lang.String,java.lang.String>"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.CustomizedController",
+      "name": "baiduAPI.Customized.access-token",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.CustomizedController",
+      "name": "baiduAPI.Customized.api-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.CustomizedController",
+      "name": "baiduAPI.Customized.app-id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.CustomizedController",
+      "name": "baiduAPI.Customized.secret-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.CustomizedController",
+      "name": "baiduAPI.Customized.token-date",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.NLPController",
+      "name": "baiduAPI.NLP.access-token",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.NLPController",
+      "name": "baiduAPI.NLP.api-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.NLPController",
+      "name": "baiduAPI.NLP.app-id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.NLPController",
+      "name": "baiduAPI.NLP.secret-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.NLPController",
+      "name": "baiduAPI.NLP.token-date",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.RetrievalController",
+      "name": "baiduAPI.Retrieval.access-token",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.RetrievalController",
+      "name": "baiduAPI.Retrieval.api-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.RetrievalController",
+      "name": "baiduAPI.Retrieval.app-id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.RetrievalController",
+      "name": "baiduAPI.Retrieval.secret-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.RetrievalController",
+      "name": "baiduAPI.Retrieval.token-date",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.ReviewController",
+      "name": "baiduAPI.Review.access-token",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.ReviewController",
+      "name": "baiduAPI.Review.api-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.ReviewController",
+      "name": "baiduAPI.Review.app-id",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.ReviewController",
+      "name": "baiduAPI.Review.secret-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.controller.baidu.ReviewController",
+      "name": "baiduAPI.Review.token-date",
+      "type": "java.lang.String"
+    }
+  ]
+}

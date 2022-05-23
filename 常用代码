@@ -1,0 +1,12 @@
+<script src="/aiwriter/js/layer-3.5.1/layer.js" type="text/javascript"></script>
+layer.msg(message, {offset:'t'});
+layer.alert(message, {icon:6});
+
+  layer.msg(message, {offset:'t'});
+ $.get("",function (data) {
+
+},'json');
+
+ $.post("",function (data) {
+
+},'json');
