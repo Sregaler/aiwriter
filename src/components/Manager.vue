@@ -121,8 +121,9 @@ export default {
             }
         },
         selectAll(page){
+            var formFile = new window.FormData();
             if(this.sortByTime){
-                var formFile = new window.FormData();
+
                 formFile.append("page",page+"")
                 formFile.append("pageSize","5")
                 formFile.append("orderByColumn","create_time")
@@ -141,7 +142,6 @@ export default {
                     console.log(e)
                 })
             }else{
-                var formFile = new window.FormData();
                 formFile.append("page",page+"")
                 formFile.append("pageSize","5")
                 if(this.searchname!=""){
@@ -169,13 +169,18 @@ export default {
                 var formFile = new window.FormData();
                 formFile.append("aid",id)
                 axios.post("/article/deleteById",formFile).then(res=>{
-                    this.selectAll("1")
+                    if(res.data.ok){
+                        this.selectAll("1")
+                        this.$message({
+                        type: 'success',
+                        message: '删除成功!'
+                        });
+                    }
+                }).catch(()=>{
                     this.$message({
-                    type: 'success',
-                    message: '删除成功!'
-                    });
-                }).catch(e=>{
-                    console.log(e)
+                        type: 'error',
+                        message: '删除失败!'
+                        });
                 })
             }).catch(() => {
                 this.$message({

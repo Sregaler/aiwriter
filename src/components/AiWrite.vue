@@ -412,7 +412,6 @@ export default {
     },
     fileUpOver(event) {
       var fileObj = event.target.files[0]; // js 获取文件对象
-      var ty;
       if (typeof fileObj == "undefined") {
         return;
       }
@@ -539,6 +538,9 @@ export default {
         }
       }
       document.getElementById("QWFormworkTextAi").innerHTML = s;
+      if(this.title.trim()==""){
+        this.title=name
+      }
       this.$message.success("引用成功");
     },
     parseInner() {
@@ -565,9 +567,13 @@ export default {
     },
     //
     getImgByText(name){
+
       var formFile = new window.FormData();
       if(name){
         formFile.append("keyWord", this.imgSerach);
+        if(this.imgSerach.trim()==""){
+          return
+        }
       }else{
         var pEle = document.getElementById("QWFormworkTextAi").getElementsByTagName("p");
         var s = ""
@@ -577,6 +583,9 @@ export default {
           }
         }
         formFile.append("keyWord", s);
+        if(s.trim()==""){
+          return
+        }
       }
       formFile.append("num", 10); //加入文件对象
       // formFile.append("random", 1);

@@ -18,8 +18,8 @@
                 <span class="GJ-top-s2" :class="{'GJ-top-s2-a':suCaiType==1}" @click="searchInfo(1)">图片</span>
                 <span class="GJ-top-s2" :class="{'GJ-top-s2-a':suCaiType==2}" @click="searchInfo(2)">视频</span>
                 <span class="GJ-top-s2" :class="{'GJ-top-s2-a':suCaiType==3}" @click="searchInfo(3)" v-if="GJFont[0]">音频</span>
-                <button class="GJ-top-bt">搜索</button>
-                <input class="GJ-top-in" type="text" placeholder="输入搜索素材的名称">
+                <button class="GJ-top-bt" @click="searchByname">搜索</button>
+                <input class="GJ-top-in" type="text" v-model="searchname" placeholder="输入搜索素材的名称">
             </div>
             <div class="GJ-sort clearfix">
                 <!-- <span class="GJ-sort-s1"  @click="GJSortSelect=!GJSortSelect">∨</span>
@@ -99,9 +99,17 @@ export default {
             currentTitle:"",
             currentUrl:"",
             ShowBtn:false,
+            searchname:""
         }
     },
     methods:{
+        // 搜索素材
+        searchByname(){
+            if(this.searchname==""){
+                return
+            }
+            this.selectAll(1)
+        },
         // 文本和视频稿件切换
         togGJ(name){
             this.GJInfo.GJTag = name
@@ -153,6 +161,9 @@ export default {
             if(this.suCaiType!=0){
                 formFile.append("m_type",this.suCaiType+"")
             }
+            if(this.searchname!=""){
+                formFile.append("m_name",this.searchname)
+            }
             axios.post("/material/list",formFile).then(res=>{
                 this.suCaiList = []
                 for(let info of res.data.list){
@@ -180,11 +191,13 @@ export default {
                 var formFile = new window.FormData();
                 formFile.append("mid",id)
                 axios.post("/material/deleteById",formFile).then(res=>{
-                    this.selectAll("1")
-                    this.$message({
-                    type: 'success',
-                    message: '删除成功!'
+                    if(res.data.ok){
+                        this.selectAll("1")
+                        this.$message({
+                        type: 'success',
+                        message: '删除成功!'
                     });
+                    }
                 }).catch(e=>{
                     console.log(e)
                 })
