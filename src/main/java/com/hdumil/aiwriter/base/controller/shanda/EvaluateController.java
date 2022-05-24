@@ -106,7 +106,6 @@ public class EvaluateController {
                     try {
                         byte[] fileBytes;
                         String file_url = pItem.attr("src");
-                        System.out.println(file_url);
                         // 需要判断图片的来源
                         if(file_url.substring(0,4).equals("http")){
                             fileBytes = HttpUtil.getFileBytes(file_url);
