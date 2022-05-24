@@ -207,7 +207,7 @@ public class HttpUtil {
                 }
                 in.close();
             }
-            System.err.println("result:" + result);
+//            System.err.println("result:" + result);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -295,7 +295,6 @@ public class HttpUtil {
         restTemplate.getMessageConverters().set(1,new StringHttpMessageConverter(StandardCharsets.UTF_8));
         ResponseEntity<String> entity = restTemplate.exchange(httpUrl, HttpMethod.GET, httpEntity,String.class, map);
         String reualt = entity.toString();
-        System.out.println(reualt);
         return reualt;
     }
 

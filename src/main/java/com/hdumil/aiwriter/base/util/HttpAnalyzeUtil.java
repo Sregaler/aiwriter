@@ -24,7 +24,8 @@ public class HttpAnalyzeUtil {
 
     public static Map<String, Object> getContent_Baijiahao(String url){
         Map<String, Object> res = new HashMap<>();
-        String xmlSource = HttpUtil.httpGet(url,null);
+        String xmlSource = HttpUtil.httpGetByJsoup(url,null);
+//        System.out.println(xmlSource);
         Document document = Jsoup.parse(xmlSource);
         res.put("news_content", qureyContent(document, "index-module_articleWrap_2Zphx ",Integer.MAX_VALUE));
         res.put("title", qureyContent(document, "index-module_articleTitle_28fPT ",1));

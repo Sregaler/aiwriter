@@ -203,6 +203,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/hdumil/aiwriter/base/util/RPC.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/resources/application.properties">
           <value>
             <set />
@@ -239,6 +244,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/java/com/hdumil/aiwriter/test/Main3.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/com/hdumil/aiwriter/test/RPC.java">
           <value>
             <set />
           </value>

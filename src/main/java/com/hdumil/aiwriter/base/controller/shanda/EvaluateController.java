@@ -84,9 +84,10 @@ public class EvaluateController {
         Elements pItems = document.getAllElements();
         if(pItems.size()>0){
             for (Element pItem : pItems) {
-                if(pItem.tagName().equals("p"))
+                if(pItem.tagName().equals("p")){
                     if(!pItem.text().equals(""))
                         paragraphs.add(new ParagraphNode("0",pItem.text()));
+                }
                 else{
                     ParagraphNode paragraphNode = new ParagraphNode();
                     switch (pItem.tagName()) {
@@ -105,6 +106,7 @@ public class EvaluateController {
                     try {
                         byte[] fileBytes;
                         String file_url = pItem.attr("src");
+                        System.out.println(file_url);
                         // 需要判断图片的来源
                         if(file_url.substring(0,4).equals("http")){
                             fileBytes = HttpUtil.getFileBytes(file_url);
@@ -113,10 +115,10 @@ public class EvaluateController {
                             fileBytes = FileUtil.readFileByBytes(session.getServletContext().getRealPath(file_url));
                         }
                         paragraphNode.content = Base64.getEncoder().encodeToString(fileBytes);
+                        paragraphs.add(paragraphNode);
                     } catch (IOException ex) {
-                        paragraphNode.content = "";
+                        ex.printStackTrace();
                     }
-                    paragraphs.add(paragraphNode);
                 }
             }
         }
