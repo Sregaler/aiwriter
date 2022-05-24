@@ -10,6 +10,7 @@ import com.hdumil.aiwriter.base.controller.baidu.bean.Text2video1;
 import com.hdumil.aiwriter.base.controller.shanda.EvaluateController;
 import com.hdumil.aiwriter.base.service.impl.BaiduReptileServiceImpl;
 import com.hdumil.aiwriter.base.service.impl.NationalEmergencyReptileServiceImpl;
+import com.hdumil.aiwriter.base.util.HttpAnalyzeUtil;
 import org.json.JSONException;
 import org.junit.Test;
 
@@ -194,20 +195,20 @@ public class TestBlog {
 //        String Word = "青藏铁路，应急管理部党委书记、部长黄明主持召开部党委会和部务会";
         String Word = "iphone手机出现“白苹果”原因及解决办法，用苹果手机的可以看下,iphone手机出现“白苹果”原因及解决办法，用苹果手机的可以看下,iphone手机出现“白苹果”原因及解决办法，用苹果手机的可以看下,iphone手机出现“白苹果”原因及解决办法，用苹果手机的可以看下,iphone手机出现“白苹果”原因及解决办法，用苹果手机的可以看下,iphone手机出现“白苹果”原因及解决办法，用苹果手机的可以看下，iphone手机出现“白苹果”原因及解决办法，用苹果手机的可以看下,iphone手机出现“白苹果”原因及解决办法，用苹果手机的可以看下,iphone手机出现“白苹果”原因及解决办法，用苹果手机的可以看下,iphone手机出现“白苹果”原因及解决办法，用苹果手机的可以看下,iphone手机出现“白苹果”原因及解决办法，用苹果手机的可以看下,iphone手机出现“白苹果”原因及解决办法，用苹果手机的可以看下";
 //        String Word = "";
-//        BaiduReptileServiceImpl baiduReptileService = new BaiduReptileServiceImpl();
-//        List<Map<String, String>> res = baiduReptileService.imageReptile(Word,6,true);
-//        System.out.println(res.size());
-//        for (int i = 0; i < res.size(); i++) {
-//            System.out.println(res.get(i).get("url"));
-//        }
+        BaiduReptileServiceImpl baiduReptileService = new BaiduReptileServiceImpl();
+        List<Map<String, String>> res = baiduReptileService.imageReptile(Word,6,true);
+        System.out.println(res.size());
+        for (int i = 0; i < res.size(); i++) {
+            System.out.println(res.get(i).get("url"));
+        }
 
-        NLPController NLPC = new NLPController();
-        NLPC.setApiKey("d0ZmMHyBgj9S3FiWkGZEXCMV");
-        NLPC.setSecretKey("4nPsqIPZIAPMntaF2BomhEGGdtiGSxwy");
-        NLPC.setAccessToken();
-        ReptileController reptileController = new ReptileController();
-        reptileController.setNlpController(NLPC);
-        System.out.println(reptileController.keyWordByNLP(Word));
+//        NLPController NLPC = new NLPController();
+//        NLPC.setApiKey("d0ZmMHyBgj9S3FiWkGZEXCMV");
+//        NLPC.setSecretKey("4nPsqIPZIAPMntaF2BomhEGGdtiGSxwy");
+//        NLPC.setAccessToken();
+//        ReptileController reptileController = new ReptileController();
+//        reptileController.setNlpController(NLPC);
+//        System.out.println(reptileController.keyWordByNLP(Word));
     }
 
     @Test
@@ -258,6 +259,14 @@ public class TestBlog {
             System.out.println("result_vo:" + res.getT());
         else
             System.out.println("请求出错:" + res.getMess());
+    }
+
+    @Test
+    public void test_HttpAnalyzeUtil() throws Exception {
+        Map<String, Object> map = HttpAnalyzeUtil.getContent_Baijiahao("https://baijiahao.baidu.com/s?id=1629023731257426183");
+        System.out.println(map.get("news_content"));
+        System.out.println(map.get("title"));
+        System.out.println(map.get("time_laiy"));
     }
 }
 

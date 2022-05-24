@@ -1,22 +1,15 @@
 package com.hdumil.aiwriter.base.controller.baidu;
 
 import com.hdumil.aiwriter.base.bean.ResultVo;
-import com.hdumil.aiwriter.base.util.DateTimeUtil;
 import com.hdumil.aiwriter.base.util.HttpUtil;
 import lombok.Data;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashMap;
-import java.util.Map;
 
 @CrossOrigin
 @Controller
@@ -33,7 +26,7 @@ public class SearchController {
                                      String start_date){
         ResultVo resultVo = new ResultVo();
         String url_path = "http://106.12.146.251:8152/correlation/correlation_list/";
-        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         if(query!=null) map.put("query",query);
         if(end_date!=null) map.put("end_date",end_date);
         if(start_date!=null) map.put("start_date",start_date);
@@ -47,7 +40,7 @@ public class SearchController {
         map.clear();
         map.put("Authorization", SearchAuthorization);
         map.put("Content-Type","application/json");
-        String centent = HttpUtil.httpGet(url_path, map);
+        String centent = HttpUtil.httpGetTrust(url_path, map);
         resultVo.setMess("主题关联");
         resultVo.setOk(true);
         resultVo.setT(centent);
@@ -62,7 +55,7 @@ public class SearchController {
                                              String id){
         String url_path = "http://106.12.146.251:8152/topicgraph_search/search_topic_info_unique";
         ResultVo resultVo = new ResultVo();
-        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         if(topic_name!=null) map.put("topic_name",topic_name);
         if(start_time!=null) map.put("start_time",start_time);
         if(end_time!=null) map.put("end_time",end_time);
@@ -76,7 +69,7 @@ public class SearchController {
         map.clear();
         map.put("Authorization", SearchAuthorization);
         map.put("Content-Type","application/json");
-        String centent = HttpUtil.httpGet(url_path,map);
+        String centent = HttpUtil.httpGetTrust(url_path,map);
         resultVo.setMess("模糊检索主题以及相关信息");
         resultVo.setOk(true);
         resultVo.setT(centent);
@@ -100,7 +93,7 @@ public class SearchController {
         String search_dup;
 
         public String getParam(){
-            HashMap<String, Object> map = new HashMap<>();
+            HashMap<String, String> map = new HashMap<>();
             if(query!=null) map.put("query",query);
             if(end_date!=null) map.put("end_date",end_date);
             if(start_date!=null) map.put("start_date",start_date);
@@ -122,10 +115,10 @@ public class SearchController {
     public ResultVo related_news_data(RelatedNews relatedNews){
         String url_path = "http://106.12.146.251:8152/related_news/data/" + relatedNews.getParam();
         ResultVo resultVo = new ResultVo();
-        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         map.put("Authorization", SearchAuthorization);
         map.put("Content-Type","application/json");
-        String centent = HttpUtil.httpGet(url_path, map);
+        String centent = HttpUtil.httpGetTrust(url_path, map);
         resultVo.setMess("资讯检索");
         resultVo.setOk(true);
         resultVo.setT(centent);
@@ -142,7 +135,7 @@ public class SearchController {
                                  String check_sim){
         String url_path = "http://106.12.146.251:8152/video_search/video_search/";
         ResultVo resultVo = new ResultVo();
-        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         if(query!=null) map.put("query",query);
         if(end_date!=null) map.put("end_date",end_date);
         if(start_date!=null) map.put("start_date",start_date);
@@ -158,7 +151,7 @@ public class SearchController {
         map.clear();
         map.put("Authorization", SearchAuthorization);
         map.put("Content-Type","application/json");
-        String centent = HttpUtil.httpGet(url_path,map);
+        String centent = HttpUtil.httpGetTrust(url_path,map);
         resultVo.setMess("相关视频");
         resultVo.setOk(true);
         resultVo.setT(centent);
