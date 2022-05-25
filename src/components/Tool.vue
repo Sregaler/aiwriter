@@ -228,6 +228,11 @@ export default {
       this.$router.replace({name:"moban"});
     },
     popModal(name){
+      if(name=='稿件转视频'){
+        this.$bus.$emit('navTag',"稿件转视频")
+        this.$router.replace({name:"testtovideo"});
+        return
+      }
       switch (name) {
         case "热点发现":
           this.$router.replace({

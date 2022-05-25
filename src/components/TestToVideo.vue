@@ -112,7 +112,7 @@ export default {
       videoShowBtn:false,
       pageUrl:"",
       docUrl:"",
-      writerUrl:"/16516",
+      writerUrl:"",
       writerModal:"当前文稿",
       videoLoadding:true,
       videosrc:"",

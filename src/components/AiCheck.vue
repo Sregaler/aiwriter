@@ -18,7 +18,9 @@
         <div class="ZN-Score-loading" v-loading="Loadding" element-loading-text="正在评分中">
           <span class="ZN-Score-s2">{{agvSocre}}</span>
           <div class="ZN-Score-d">
-              <p v-for="(item,index) in socreList" :key="index">{{item.key}}：<b>{{item.value}}</b></p>
+              <p class="ZN-Score-detial" v-for="(item,index) in socreList" :key="index" :title="item.des">{{item.key}}：<b>{{item.value}}</b></p>
+              <hr>
+              <p class="ZN-Score-detial" v-for="item in picInfo" :key="item.key" :title="item.des">{{item.key}}：<b :class="{'highl':item.des!=''}">{{item.r}}</b></p>
           </div>
         </div>
       </div>
@@ -370,6 +372,18 @@ export default {
       suCaiList: [],
       agvSocre:0,
       socreList:[],
+      socreDes:{"结构完整指数":"结构完整的定义为新闻文稿中包含导语、主体内容和结语三个部分，主体内容讲述了具体的新闻信息，导语和结语为主体内容简洁表达。计算方法为分别计算导语与主体内容相似性，结语和主体内容相似性。该分数越高，结构越完整。当分数小于60时，建议修改文稿导语和结语内容，使其符合文稿主体内容。",
+      "层次清晰指数":"层次清晰的定义为新闻文稿中包含文本完整结构的基础之上，同时文章体现了标题想要表达的主旨。计算方法为结构完整指数和内容标题相关性的加权和。该分数越高，层次越清晰。当分数小于60时，建议修改文稿标题。",
+      "前后连贯指数":"前后连贯的定义为段落前后内容能够衔接起来。计算方法为计算相邻段落的语义相似度。该分数越高，连贯性越好。当分数小于60时，建议检查文稿内容段落间是否内容连贯。",
+      "简洁凝练指数":"简洁凝练的定义为文本冗余度较低，以较短的篇幅表明主旨。计算方法为文章长度和内容标题相似性的加权求和。该分数越高，越简洁凝练。当分数小于60时，建议修改文稿篇幅和文稿标题。",
+      "信息完整指数":"信息完整的定义为文稿内容与标题匹配。计算方法为文稿内容和标题的相似度。该分数越高，越信息完整。当分数小于60时，建议检查文稿标题内容是否与文稿主体内容相匹配。",
+      "主题明确指数":"通俗易懂定义为文章内容是否使用过多的晦涩词。该分数越高代表文章更加通俗易懂。当分数小于60时，建议检查文稿用词，减少晦涩词的使用。",
+      "通俗易懂指数":"通俗易懂定义为文章内容是否使用过多的晦涩词。该分数越高代表文章更加通俗易懂。当分数小于60时，建议检查文稿用词，减少晦涩词的使用。",
+      "流畅度":"流畅度定义为预训练语言模型预测下一个词的覆盖率。当分数小于60时，建议检查文稿用词是否合理，连词使用是否合理。",
+      "多样性":"多样性评估分为用词多样性和句子多样性的加权和。用词多样性定义为生成句子中不同 n-grams 的数量除以 n-grams 的总数。该指标越大代表生成句子的用词更多样；句子多样性定义为生成句子互相之间的 BLEU 值的均值。该指标越大代表生成的句子之间的多样性越高。当分数小于60时，建议修改文稿用词和句式形式，减少词汇重复使用次数，减少单一句式重复使用次数。",
+      "真实准确指数":"真实准确定义为文章内容是否存在事实性错误。该分数高代表存在事实错误。当分数小于60时，建议检查文稿中是否存在虚假内容或错误信息。",
+      "导向正确指数":"导向正确定义为文章内容与主流价值观的一致性。该分数越高代表导向越不正确。当分数小于60时，建议检查文稿内容价值观导向是否合理。"},
+      picInfo:[]
     };
   },
   methods: {
@@ -379,24 +393,62 @@ export default {
       formFile.append("title", this.title); //加入文件对象
       formFile.append("content", document.getElementById("QWFormworkTextAi").innerHTML); //加入文件对象
       this.Loadding = true
-      axios.post("/shanda/evaluate/news_score",formFile).then(res=>{
+      axios.post("/shanda/evaluate/news_score_v2",formFile).then(res=>{
         if(res.data.ok){
           this.socreList = []
+          this.picInfo=[]
           var data = JSON.parse(res.data.t)
           var avg = 0
+          console.log(data)
           for(let i in data){
             if(data[i] instanceof Array){
-              continue
+              if(data[i].length == 0 || i == "图片像素密度"){
+                continue
+              }
+              if(i == "图片是否合规" || i == "图片是否饱和"){
+                var temp = {}
+                temp.key = i
+                temp.r = "是"
+                temp.des = ""
+                for(let p in data[i]){
+                  if(data[i][p] == 0){
+                    temp.r = "否"
+                    if(temp.des == ""){
+                      temp.des = temp.des + "图片" + (parseInt(p)+1)
+                    }else{
+                      temp.des = temp.des + ",图片" + (parseInt(p)+1)
+                    }
+                  }
+                }
+                this.picInfo.push(temp)
+                continue
+              }
+              var temp = {}
+              temp.key = i
+              temp.r = "否"
+              temp.des = ""
+              for(let p in data[i]){
+                if(data[i][p] == 1){
+                  temp.r = "是"
+                  if(temp.des == ""){
+                    temp.des = temp.des + "图片" + (parseInt(p)+1)
+                  }else{
+                    temp.des = temp.des + ",图片" + (parseInt(p)+1)
+                  }
+                }
+              }
+              this.picInfo.push(temp)
             }else{
               var tmp = {}
               tmp.key = i;
+              tmp.des = this.socreDes[i]
               avg += (data[i]*100)
               tmp.value = (data[i]*100).toFixed(1)
               this.socreList.push(tmp)
             }
           }
-          this.Loadding = false
           this.agvSocre = (avg/this.socreList.length).toFixed(1)
+          this.Loadding = false
         }
       })
     },
@@ -1080,7 +1132,7 @@ li:hover {
   top: 0;
   bottom: 0;
   background-color: darkgrey;
-  z-index: 999;
+  z-index: 3000;
   opacity: 0.5;
 }
 .GaoJanSelect {
@@ -1092,7 +1144,7 @@ li:hover {
   top: 50%;
   margin-left: -250px;
   margin-top: -125px;
-  z-index: 1000;
+  z-index: 3500;
   border-radius: 5px;
   padding: 30px;
   font-size: 18px;
@@ -1143,7 +1195,7 @@ li:hover {
   top: 50%;
   margin-left: -400px;
   margin-top: -270px;
-  z-index: 1000;
+  z-index: 4000;
   border-radius: 10px;
 }
 .modal-top {
@@ -1266,7 +1318,7 @@ li:hover {
   background-color: #04364b;
 }
 .ZN-Score{
-  height: 500px;
+  height: 850px;
   background-color: white;
   margin-top: 330px;
   position: relative;
@@ -1304,10 +1356,16 @@ li:hover {
 .ZN-Score-d p{
   font-size: 16px;
 }
+.ZN-Score-d p:hover{
+  cursor: pointer;
+}
 .ZN-Score-loading{
-  height: 450px;
+  height: 800px;
   width: 100%;
   position: absolute;
   top: 50px;
+}
+.highl{
+  color: red;
 }
 </style>

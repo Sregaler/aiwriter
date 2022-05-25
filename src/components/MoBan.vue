@@ -3,7 +3,7 @@
     <div class="col-md-2 col-xs-2"></div>
     <div class="col-md-8 col-xs-8">
       <div class="moban-select">新闻热点</div>
-      <ul class="moban-select-ul">
+      <ul class="moban-select-ul clearfix">
         <li
           class="moban-select-item"
           v-for="(item, index) in hotThing"
@@ -549,7 +549,6 @@ export default {
 }
 .moban-select-ul {
   margin-bottom: 40px;
-  height: 120px;
 }
 .moban-select-item {
   width: 236px;

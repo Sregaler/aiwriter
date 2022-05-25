@@ -12,6 +12,7 @@ import Manager from "../components/Manager.vue"
 import Tool from "../components/Tool.vue"
 import SuCaiKu from "../components/SuCaiKu.vue"
 import HotFind from "../components/HotFind.vue"
+import ThingDetail from "../components/ThingDetail.vue"
 //创建并暴露一个路由器
 const rounter = new VueRouter({
 	routes:[
