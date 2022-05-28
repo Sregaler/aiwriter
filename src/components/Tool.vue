@@ -238,6 +238,11 @@ export default {
           this.$router.replace({
             name: "hotfind",
           });
+          break;
+        case "事件脉络":
+          this.$router.replace({
+            name: "thingdetial",
+          });
       }
     }
   },

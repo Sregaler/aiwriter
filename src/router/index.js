@@ -100,6 +100,11 @@ const rounter = new VueRouter({
 			path:'/hotfind',
 			component:HotFind,
 		},
+		{
+			name:"thingdetial",
+			path:'/thingdetial',
+			component:ThingDetail,
+		},
 	]
 })
 

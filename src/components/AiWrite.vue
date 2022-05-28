@@ -308,6 +308,10 @@ export default {
     };
   },
   methods: {
+    // 富文本工具栏字体变化
+    editChange(com, value) {
+      document.execCommand(com, false, value);
+    },
     //跳转至审核页面
     nextStep() {
       this.$router.push({
