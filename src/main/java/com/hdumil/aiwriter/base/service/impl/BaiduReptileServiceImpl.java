@@ -49,6 +49,7 @@ public class BaiduReptileServiceImpl implements BaiduReptileService {
                 img_count++;
                 if(img_count >= count_max) break;
             }
+            if(img_count >= count_max) break;
             SerchWord = randomSubString(Word);
         }
         return res;
