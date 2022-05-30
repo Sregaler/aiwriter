@@ -21,6 +21,8 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Company :
@@ -263,9 +265,9 @@ public class TestBlog {
 
     @Test
     public void test_HttpAnalyzeUtil() throws Exception {
-//        Map<String, Object> map = HttpAnalyzeUtil.getContent_Baijiahao("https://baijiahao.baidu.com/s?id=1629023731257426183");
+        Map<String, Object> map = HttpAnalyzeUtil.getContent_Baijiahao("https://baijiahao.baidu.com/s?id=1732666564810063931&wfr=spider&for=pc");
 //        Map<String, Object> map = HttpAnalyzeUtil.getContent_Baijiahao("https://www.sohu.com/a/445951916_120950569");
-        Map<String, Object> map = HttpAnalyzeUtil.getContent_Baijiahao("https://xw.qq.com/cmsid/20210120A07N6M00");
+//        Map<String, Object> map = HttpAnalyzeUtil.getContent_Baijiahao("https://xw.qq.com/cmsid/20210120A07N6M00");
 //        Map<String, Object> map = HttpAnalyzeUtil.getContent_Baijiahao("https://www.163.com/news/article/H845MO4D00018AP2.html");
         System.out.println(map.get("news_content"));
         System.out.println(map.get("title"));

@@ -48,7 +48,7 @@ public class HttpUtil {
 
     public static void echoRequestHeaders(HttpURLConnection httpUrlCon){
         System.out.println("Request Headers:");
-        System.out.println(" " + httpUrlCon.getRequestMethod() + " / "+ httpUrlCon.getURL());
+        System.out.println(httpUrlCon.getRequestMethod() + " / "+ httpUrlCon.getURL());
         Map<String, List<String>> requestHeaders =httpUrlCon.getRequestProperties();
         for (String key : requestHeaders.keySet()) {
             System.err.println(key + "--->" + requestHeaders.get(key));
@@ -201,9 +201,10 @@ public class HttpUtil {
                 // 定义 BufferedReader输入流来读取URL的响应
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(connection.getInputStream(), "UTF-8"));
-                String getLine;
-                while ((getLine = in.readLine()) != null) {
-                    result.append(getLine);
+                String s;
+                if((s = in.readLine()) != null) result.append(s);
+                while ((s = in.readLine()) != null) {
+                    result.append("\n").append(s);
                 }
                 in.close();
             }
@@ -231,21 +232,19 @@ public class HttpUtil {
                 } else {
                     con = (HttpURLConnection)url.openConnection();
                 }
+//                if(headerMap == null) headerMap = GetDefaultParm;
                 if(headerMap != null){
                     for (Map.Entry item : headerMap.entrySet()) {
                         con.setRequestProperty(item.getKey().toString(),item.getValue().toString()); //设置header
                     }
                 }
-//                else{
-//                    for (Map.Entry item : GetDefaultParm.entrySet()) {
-//                        con.setRequestProperty(item.getKey().toString(),item.getValue().toString()); //设置header
-//                    }
-//                }
+//                echoRequestHeaders(con);// 查看请求头的内容
                 input = new BufferedReader(new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8));
                 strb = new StringBuilder();
                 String s;
+                if((s = input.readLine()) != null) strb.append(s);
                 while ((s = input.readLine()) != null) {
-                    strb.append(s).append("\n");
+                    strb.append("\n").append(s);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

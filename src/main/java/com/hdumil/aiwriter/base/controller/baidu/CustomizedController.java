@@ -51,7 +51,7 @@ public class CustomizedController {
         map.put("start_date", start_date);
         map.put("end_date", end_date);
         //调用接口获取信息
-//        ResultVo resultVo = AuthService.jsonPostUrl("天气文章-定制版", url, accessToken, map,null);
+//        ResultVo resultVo = AuthService.jsonPostUrl("天气文章-定制版", url, accessToken, map,"UTF-8");
         ResultVo resultVo = new ResultVo();
         resultVo.setMess("天气文章-定制版");
         resultVo.setOk(true);

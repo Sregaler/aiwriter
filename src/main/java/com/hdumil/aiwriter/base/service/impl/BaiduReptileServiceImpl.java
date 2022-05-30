@@ -62,4 +62,5 @@ public class BaiduReptileServiceImpl implements BaiduReptileService {
         String SubWord = mainString.substring(start,end);
         return SubWord;
     }
+
 }

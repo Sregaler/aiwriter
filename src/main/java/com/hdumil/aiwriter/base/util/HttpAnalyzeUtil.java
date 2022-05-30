@@ -24,8 +24,8 @@ public class HttpAnalyzeUtil {
 
     public static Map<String, Object> getContent_Baijiahao(String url){
         Map<String, Object> res = new HashMap<>();
-        String xmlSource = HttpUtil.httpGetByJsoup(url,null);
-//        System.out.println(xmlSource);
+        String xmlSource = HttpUtil.httpGet(url,null);
+        System.out.println(xmlSource);
         Document document = Jsoup.parse(xmlSource);
         res.put("news_content", qureyContent(document, "index-module_articleWrap_2Zphx ",Integer.MAX_VALUE));
         res.put("title", qureyContent(document, "index-module_articleTitle_28fPT ",1));
@@ -37,7 +37,7 @@ public class HttpAnalyzeUtil {
         Elements pItems = document.getElementsByClass(className);
         StringBuilder news_list = new StringBuilder();
         num = Math.min(num, pItems.size());
-        System.out.println(num);
+//        System.out.println(num);
         for (int i = 0; i < num; i++) {
             Element pItem = pItems.get(i);
             Elements pEle = pItem.getElementsByTag("p");
