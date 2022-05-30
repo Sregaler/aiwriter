@@ -1,6 +1,7 @@
 package com.hdumil.aiwriter.base.controller.baidu;
 
 import com.hdumil.aiwriter.base.bean.ResultVo;
+import com.hdumil.aiwriter.base.util.CodeChangeUtils;
 import com.hdumil.aiwriter.base.util.HttpUtil;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,6 +42,7 @@ public class SearchController {
         map.put("Authorization", SearchAuthorization);
         map.put("Content-Type","application/json");
         String centent = HttpUtil.httpGetTrust(url_path, map);
+        centent = CodeChangeUtils.decodeUnicode(centent);
         resultVo.setMess("主题关联");
         resultVo.setOk(true);
         resultVo.setT(centent);
@@ -70,6 +72,7 @@ public class SearchController {
         map.put("Authorization", SearchAuthorization);
         map.put("Content-Type","application/json");
         String centent = HttpUtil.httpGetTrust(url_path,map);
+        centent = CodeChangeUtils.decodeUnicode(centent);
         resultVo.setMess("模糊检索主题以及相关信息");
         resultVo.setOk(true);
         resultVo.setT(centent);
@@ -119,6 +122,7 @@ public class SearchController {
         map.put("Authorization", SearchAuthorization);
         map.put("Content-Type","application/json");
         String centent = HttpUtil.httpGetTrust(url_path, map);
+        centent = CodeChangeUtils.decodeUnicode(centent);
         resultVo.setMess("资讯检索");
         resultVo.setOk(true);
         resultVo.setT(centent);
@@ -152,6 +156,7 @@ public class SearchController {
         map.put("Authorization", SearchAuthorization);
         map.put("Content-Type","application/json");
         String centent = HttpUtil.httpGetTrust(url_path,map);
+        centent = CodeChangeUtils.decodeUnicode(centent);
         resultVo.setMess("相关视频");
         resultVo.setOk(true);
         resultVo.setT(centent);
