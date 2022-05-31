@@ -198,11 +198,19 @@
 
         <div v-show="toolnav[2]">
           <div class="linkSearch">
-            <input type="text" placeholder="输入相关主题" />
-            <el-button type="primary" icon="el-icon-search"></el-button>
+            <input type="text" placeholder="输入相关主题" v-model="topicSerach"/>
+            <el-button type="primary" icon="el-icon-search" @click="getTopic"></el-button>
           </div>
           <div style="height: 20px"></div>
-
+          <div class="topic">
+            <el-collapse>
+              <el-collapse-item :title="item.name" :name="index" v-for="(item,index) in topicList" :key="index">
+                <div v-for="(k,i) in item.related_url" :key="i">
+                  <a  :href="k.url" :title="k.title" target="_blank">{{k.title.length>20?k.title.substring(0,21)+"...":k.title}}</a>
+                </div>
+              </el-collapse-item>
+            </el-collapse>
+          </div>
         </div>
       </div>
     </div>
@@ -305,9 +313,51 @@ export default {
       putOrSearch: 0,
       putId: 1,
       suCaiList: [],
+      topicSerach:"",
+      topicList:[],
     };
   },
   methods: {
+    // 获取主题关联
+    getTopic(){
+      var formFile = new window.FormData();
+      formFile.append("query", this.topicSerach); //加入文件对象
+      axios
+        .post("/baidu/search/correlation_list", formFile)
+        .then((res) => {
+          var data = res.data;
+          if(data.ok){
+            var msg = JSON.parse(data.t)
+            if(msg.content.length==0){
+              this.$message.info("未检索到相关主题");
+              return
+            }
+            this.topicList = []
+            this.topicList = msg.content
+          }else{
+            this.$message.warning("相关信息获取失败");
+          }
+        })
+        .catch((e) => {
+          this.$message.warning("相关信息获取失败");
+        });
+        // var formFile1 = new window.FormData();
+        // formFile1.append("topic_name", this.topicSerach); //加入文件对象
+        // axios
+        // .post("/baidu/search/search_topic_info_unique", formFile1)
+        // .then((res) => {
+        //   var data = res.data;
+        //   if(data.ok){
+        //     var tt = JSON.parse(data.t)
+        //     console.log(tt)
+        //   }else{
+        //     this.$message.warning("相关信息获取失败");
+        //   }
+        // })
+        // .catch((e) => {
+        //   this.$message.warning("相关信息获取失败");
+        // });
+      },
     // 富文本工具栏字体变化
     editChange(com, value) {
       document.execCommand(com, false, value);
@@ -588,7 +638,10 @@ export default {
         }
         formFile.append("keyWord", s);
         if(s.trim()==""){
-          return
+          s = document.getElementById("QWFormworkTextAi").innerText.replace(" ","")
+          if(s.trim()==""){
+            return
+          }
         }
       }
       formFile.append("num", 10); //加入文件对象
@@ -614,6 +667,9 @@ export default {
   },
   activated() {
     this.imgList = []
+    this.topicList = {}
+    this.topicSerach = ""
+    this.imgSerach = ""
     this.toolnav=[true,false]
     if (this.textobj) {
       this.title = this.textobj.title;
@@ -758,6 +814,10 @@ li:hover {
 }
 .linkSearch {
   height: 36px;
+  width: 80%;
+  margin: 20px auto 0px;
+}
+.topic{
   width: 80%;
   margin: 20px auto 0px;
 }
@@ -911,7 +971,8 @@ li:hover {
 .img-show{
   width: 80%;
   margin: 0 auto;
-  min-height: 1000px;
+  height: 1000px;
+  overflow-y: auto;
 }
 .img-show img{
   width: 48%;

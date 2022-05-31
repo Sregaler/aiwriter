@@ -419,7 +419,8 @@ export default {
           return
         }
       if(this.currentActive == "天气预报" || this.currentActive == "天气预警"){
-        formFile.append("province", this.selectInfo[this.currentActive].address[1]);
+        formFile.append("province", this.selectInfo[this.currentActive].address[0]);
+        formFile.append("city", this.selectInfo[this.currentActive].address[1]);
         // axios.post(this.requestInfo[this.currentActive][1],{province:this.selectInfo[this.currentActive].address[1]}).then(res=>{
         axios.post(this.requestInfo[this.currentActive][1],formFile).then(res=>{
           if(res.data.ok){

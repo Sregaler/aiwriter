@@ -107,6 +107,8 @@ export default {
             this.titleItem[tmp.title].push(tmp1)
           }
         }
+        this.title=this.titleList[0].title
+        this.findtime = this.titleList[0].time
       });
     },
     nav(item){
@@ -121,8 +123,6 @@ export default {
   },
   mounted() {
     this.doQWhotSelect()
-    this.title="乌克兰局势"
-    this.findtime = "2020-05-06 11:56:32"
   },
 };
 </script>

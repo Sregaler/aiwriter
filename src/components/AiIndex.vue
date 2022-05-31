@@ -97,7 +97,7 @@
                         :key="index"
                         @mouseenter="item.isMouseOver = true"
                         @mouseleave="item.isMouseOver = false"
-                        @click="popModal(item.name)"
+                        @click="goTool"
                         >
                         <i class="el-icon-arrow-right moban-select-item-i" :class="{ 'moban-select-item-d-a': item.isMouseOver }"></i>
                         <span class="moban-select-item-s1"
@@ -220,7 +220,16 @@ export default {
             }else{
                 this.$bus.$emit('goLogin',true)
             }
-        }
+        },
+        goTool(){
+            if(this.loginInfo){
+                this.$bus.$emit('enter',true)
+                this.$bus.$emit('navTag',"工具箱")
+                this.$router.replace({name:"tool"})
+            }else{
+                this.$bus.$emit('goLogin',true)
+            }
+        },
     },
     mounted() {
         window.addEventListener('scroll', this.windowScroll)
