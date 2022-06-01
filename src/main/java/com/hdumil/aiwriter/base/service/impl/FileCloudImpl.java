@@ -142,7 +142,7 @@ public class FileCloudImpl implements FileUploadToCloud {
     public Map<String, Object> Upload2User(CommonsMultipartFile multipartFile, String userName) {
         Map<String, Object> map = new HashMap<>();
         long attachSize = multipartFile.getSize();
-        String imgName = userName + "/" + System.currentTimeMillis() + multipartFile.getOriginalFilename();
+        String imgName = AdminConfig.FILE_SAVE_PATH_USER + "/" + userName + "/" + System.currentTimeMillis() + multipartFile.getOriginalFilename();
         try (InputStream inputStream = multipartFile.getInputStream()) {
             String filePath = uploadFile(inputStream, attachSize, imgName);
             map.put("url", filePath);
