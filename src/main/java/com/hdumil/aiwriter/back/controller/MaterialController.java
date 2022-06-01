@@ -8,6 +8,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hdumil.aiwriter.back.bean.Material;
 import com.hdumil.aiwriter.back.bean.User;
+import com.hdumil.aiwriter.base.service.FileUploadToCloud;
 import com.hdumil.aiwriter.base.util.FileUploadUtil;
 import com.hdumil.aiwriter.base.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class MaterialController {
 
     @Autowired
     private MaterialService materialService;
+
+    @Autowired
+    private FileUploadToCloud fileUploadToCloud;
 
     @RequestMapping("/list")
     @ResponseBody
@@ -76,10 +80,11 @@ public class MaterialController {
             BeanUtils.copyProperties(material, material_copy);
             //保存到本地
             try {
-                Map<String,Object> map = FileUploadUtil.Upload2User(file, session);
+//                Map<String,Object> map = FileUploadUtil.Upload2User(file, session);
+                Map<String,Object> map = fileUploadToCloud.Upload2User(file, user.getUsername());
                 if((int)map.get("success")==1) {
                     if(material_copy.getM_type()==null)  //设置文件类型
-                        material_copy.setM_type(FileUploadUtil.getFileTypeIndx(file.getOriginalFilename()));
+                        material_copy.setM_type(FileUtil.getFileTypeIndx(file.getOriginalFilename()));
                     if(material_copy.getM_name()==null)  // 根据文件名字设置素材名字
                         material_copy.setM_name(file.getOriginalFilename());
                     material_copy.setContent((String) map.get("url"));
@@ -119,7 +124,7 @@ public class MaterialController {
             BeanUtils.copyProperties(material, material_copy);
             //保存到本地
             try {
-                Map<String,Object> map = FileUploadUtil.Upload2Public(file, session);
+                Map<String,Object> map = fileUploadToCloud.Upload2Public(file);
                 if((int)map.get("success")==1) {
                     material_copy.setContent((String) map.get("url"));
                     material_copy = materialService.save(material_copy);

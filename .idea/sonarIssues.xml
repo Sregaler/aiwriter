@@ -83,6 +83,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/hdumil/aiwriter/base/controller/AiWriteController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/hdumil/aiwriter/base/controller/FileUploadController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/hdumil/aiwriter/base/controller/ReptileController.java">
           <value>
             <set />
@@ -158,6 +168,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/hdumil/aiwriter/base/service/FileUploadToCloud.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/hdumil/aiwriter/base/service/impl/AiRunByPythonServiceImpl.java">
           <value>
             <set />
@@ -169,6 +184,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/hdumil/aiwriter/base/service/impl/BaiduReptileServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/hdumil/aiwriter/base/service/impl/FileCloudImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/hdumil/aiwriter/base/service/impl/FileUploadCloudImpl.java">
           <value>
             <set />
           </value>
@@ -324,6 +349,36 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../secondkill/src/main/resources/application.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../xzs-mysql-master/source/xzs/src/main/java/com/mindskip/xzs/service/impl/FileUploadImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../xzs-mysql-master/source/xzs/src/main/resources/application-dev.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../xzs-mysql-master/source/xzs/src/main/resources/application-pre.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../xzs-mysql-master/source/xzs/src/main/resources/application-prod.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../xzs-mysql-master/source/xzs/src/main/resources/application-test.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../xzs-mysql-master/source/xzs/src/main/resources/application.yml">
           <value>
             <set />
           </value>

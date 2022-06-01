@@ -9,6 +9,7 @@ import com.hdumil.aiwriter.back.service.CategoryService;
 import com.hdumil.aiwriter.back.service.MaterialService;
 import com.hdumil.aiwriter.base.exception.AiwriterEnum;
 import com.hdumil.aiwriter.base.exception.AiwriterException;
+import com.hdumil.aiwriter.base.service.FileUploadToCloud;
 import com.hdumil.aiwriter.base.util.DateTimeUtil;
 import com.hdumil.aiwriter.base.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private FileUploadToCloud fileUploadToCloud;
 
     @Override
     public List<Material> list(String uid, Integer mType, String m_name) {
@@ -116,6 +120,7 @@ public class MaterialServiceImpl implements MaterialService {
 
     public void delete(Material material, String realPath) {
         materialMapper.delete(material);
+        fileUploadToCloud.deleteFile(material.getContent());
         FileUtil.deleteFile(realPath + "/" + material.getContent());
     }
 

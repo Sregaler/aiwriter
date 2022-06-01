@@ -2,8 +2,10 @@ package com.hdumil.aiwriter.base.controller;
 
 import com.hdumil.aiwriter.back.bean.User;
 import com.hdumil.aiwriter.base.bean.ResultVo;
+import com.hdumil.aiwriter.base.service.FileUploadToCloud;
 import com.hdumil.aiwriter.base.util.DateTimeUtil;
 import com.hdumil.aiwriter.base.util.FileUploadUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,6 +30,8 @@ import java.util.Map;
 //@RequestMapping("/upload")
 public class FileUploadController {
 
+    @Autowired
+    private FileUploadToCloud fileUploadToCloud;
 
     //解决Editormd文件上传
     @Transactional
@@ -67,7 +71,7 @@ public class FileUploadController {
     public List<Map<String, Object>> tempfilesUpload(
             @RequestParam(value = "files", required = false) CommonsMultipartFile[] files,
             HttpSession session){
-        List<Map<String, Object>> res = FileUploadUtil.Upload2TempPublic(files, session);
+        List<Map<String, Object>> res = fileUploadToCloud.Upload2TempPublic(files);
         return res;
     }
 
@@ -77,7 +81,7 @@ public class FileUploadController {
     public List<Map<String, Object>> filesUpload2CreateVfilesUpload2CreateVidpressDocidpress(
             @RequestParam(value = "files", required = false) CommonsMultipartFile[] files,
             HttpSession session){
-        List<Map<String, Object>> res = FileUploadUtil.Upload2TempPublic(files, session);
+        List<Map<String, Object>> res = fileUploadToCloud.Upload2TempPublic(files);
         // 解析文件中是否存在文字和图片
 
 //        map.put("success", 2);

@@ -4,6 +4,7 @@ import com.hdumil.aiwriter.back.bean.Material;
 import com.hdumil.aiwriter.back.service.WriteService;
 import com.hdumil.aiwriter.base.bean.ResultVo;
 import com.hdumil.aiwriter.base.util.FileUploadUtil;
+import com.hdumil.aiwriter.base.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -36,7 +37,7 @@ public class AiWriteController {
         contentsToMatertial(materials,contents);
         // 将urls封装成materials
         for(String url : urls.split(";")){
-            materials.add(new Material(FileUploadUtil.getFileTypeIndx(url), url));
+            materials.add(new Material(FileUtil.getFileTypeIndx(url), url));
         }
         String html_url = writeService.getAiWrite(materials, article_template);
         ResultVo resultVo = new ResultVo();

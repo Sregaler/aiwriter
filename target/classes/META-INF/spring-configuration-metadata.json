@@ -25,6 +25,11 @@
       "sourceType": "com.hdumil.aiwriter.base.controller.baidu.ReviewController",
       "name": "baiduAPI.Review",
       "type": "com.hdumil.aiwriter.base.controller.baidu.ReviewController"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.service.impl.FileCloudImpl",
+      "name": "qiniu",
+      "type": "com.hdumil.aiwriter.base.service.impl.FileCloudImpl"
     }
   ],
   "properties": [
@@ -156,6 +161,31 @@
     {
       "sourceType": "com.hdumil.aiwriter.base.controller.baidu.ReviewController",
       "name": "baiduAPI.Review.token-date",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.service.impl.FileCloudImpl",
+      "name": "qiniu.access-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.service.impl.FileCloudImpl",
+      "name": "qiniu.bucket",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.service.impl.FileCloudImpl",
+      "name": "qiniu.cfg",
+      "type": "com.qiniu.storage.Configuration"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.service.impl.FileCloudImpl",
+      "name": "qiniu.secret-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdumil.aiwriter.base.service.impl.FileCloudImpl",
+      "name": "qiniu.url",
       "type": "java.lang.String"
     }
   ]

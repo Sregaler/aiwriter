@@ -79,3 +79,10 @@ baiduAPI:
     apiKey: rWKKOKTAcov73GpTRZkGu9zF
     secretKey: Omas1jvYGTsQYOd45nETzpZmqlwNHEdx
   SearchAuthorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwidXNlcl9pZCI6OSwianRpIjoiODUxNThjMzIyNzU0NDQyM2FhMWEyZmE3YWQzNjAxNzciLCJleHAiOjE4Njc2NDc0NzN9.w71rTW_aBb7G4B-Xq4q5YiFlIH4oqWpYjq93gtAclZU
+
+# 七牛云密钥
+qiniu:
+  url: http://rcsrtisy3.hn-bkt.clouddn.com/
+  bucket: aiwriter-hdu
+  accessKey: 5bshypQwnWU88NAb9P0bPnUNq2E3mh8Phvxg4iHd
+  secretKey: iAxfE2V1swjvKmqfIVMpoPoHNEPgYKCu_tRRbmiD
