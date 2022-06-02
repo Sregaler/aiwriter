@@ -184,7 +184,7 @@ export default {
         //获取图谱
         getTuPu(){
             let dom = document.getElementById('container');
-            dom.innerHTML=""
+            // dom.innerHTML=""       
             let myChart = echarts.init(dom, null, {
                 renderer: 'canvas',
                 useDirtyRect: false
@@ -208,7 +208,6 @@ export default {
                 console.log(data)
                 if(!data.data.content||data.data.content.length<=0){
                     this.$message.warning("未检索到相关信息");
-                    console.log("asdas")
                     return
                 }
                 myChart.hideLoading();
