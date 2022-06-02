@@ -31,7 +31,7 @@
             </div>
             <div class="GJ-show">
                 <!-- <div class="clearfix sucai-ul" :style="{'width':width}"> -->
-                <div class="clearfix sucai-ul" style="width:810px;">
+                <div class="clearfix sucai-ul" style="width:810px;" v-show="suCaiType!=4">
                     <div class="sucai-show" v-for="item in suCaiList" :key="item.mid" @mouseover="changeActive($event)" @mouseleave="removeActive($event)">
                         <img :src="item.imgurl" alt="" @click="showMore(item.m_type,item.content,item.m_name)">
                         <span class="sucai-show-title" :title="item.m_name">{{item.m_name.length>10?item.m_name.substring(0,11):item.m_name}}</span>
@@ -46,6 +46,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- 知识图谱 -->
+                <div id="container" style="height: 800px" v-if="suCaiType==4"></div>
                 <el-pagination
                     background
                     :page-size="12"
@@ -174,10 +176,134 @@ export default {
             if(this.GJInfo.GJTag=="本地素材"){
                 this.selectAll(1)
             }else if(this.suCaiType==4){
-                return
+                this.getTuPu()
             }else{
                 this.querySuCai()
             }
+        },
+        //获取图谱
+        getTuPu(){
+            let dom = document.getElementById('container');
+            dom.innerHTML=""
+            let myChart = echarts.init(dom, null, {
+                renderer: 'canvas',
+                useDirtyRect: false
+            });
+            let app = {};
+            let option;
+
+            let height = dom.clientHeight
+            let width = dom.clientWidth
+            let point_x = width / 2
+            let point_y = height / 2
+            let bound = Math.min(height, width)
+
+            myChart.showLoading();
+            $.get("http://127.0.0.1:8080/baidu/search/correlation_list",{query:this.searchname}, (data)=>{
+                var data = JSON.parse(data.t)
+                data.data = {}
+                data.data.content = data.content
+                delete data.content
+                data.data.query = this.searchname
+                console.log(data)
+                if(!data.data.content||data.data.content.length<=0){
+                    this.$message.warning("未检索到相关信息");
+                    console.log("asdas")
+                    return
+                }
+                myChart.hideLoading();
+                data = data['data']
+                let graph = {
+                    'categories': [{'name': 'query', 'color': 'red'}, {'name': 'up'}, {'name': 'down'}],
+                    'nodes': [],
+                    'links': []
+                }
+                graph.nodes.push({
+                    'id': 0,
+                    'name': data['query'],
+                    'category': 0,
+                    'symbolSize': 30,
+                    'label': {'show': true},
+                    'x': point_x,
+                    'y': point_y
+                })
+                let m = -1
+                for (let i = 1; i < data['content'].length; i++) {
+                    if (data['content'][i]['pv'] > m) {
+                        m = data['content'][i]['pv']
+                    }
+                }
+                for (let i = 1; i < data['content'].length; i++) {
+                    let cate = data['content'][i]['is_pv_rising'] ? 1 : 2;
+                    let pv = data['content'][i]['pv']
+                    let angle = Math.random() * 360 * 0.017453293
+                    let dx = Math.cos(angle)
+                    let dy = Math.sin(angle)
+                    let hot_rate = pv / m
+                    graph.nodes.push({
+                        'id': i,
+                        'name': data['content'][i]['name'],
+                        'category': cate,
+                        'related_url': data['content'][i]['related_url'],
+                        'pv': pv,
+                        'symbolSize': 40 * hot_rate + 5,
+                        'label': {'show': true},
+                        'x': point_x + dx * (bound * 0.5 * (1 - hot_rate) + bound * 0.2),
+                        'y': point_y + dy * (bound * 0.5 * (1 - hot_rate) + bound * 0.2)
+                    })
+                    graph.links.push({'source': 0, 'target': i})
+                }
+                option = {
+                    tooltip: {
+                        formatter: (param) => {
+                            if (param['dataType'] !== 'node') return;
+                            if (param.data.id === 0) return;
+
+                            let res = `<div> <span> <strong> ${param.name} </strong> 热度 : ${param.data.pv}</span> `
+                            for (let i = 0; i < param.data.related_url.length; i++) {
+                                let t = param.data.related_url[i].title
+                                res += `</br></br> <span> ${t}  </span> `
+                            }
+                            res += '</div>'
+                            return res;
+                        }
+
+                    },
+                    animationDuration: 1500,
+                    animationEasingUpdate: 'quinticInOut',
+                    series: [
+                        {
+                            name: '主题关联',
+                            type: 'graph',
+                            layout: 'none',
+                            data: graph.nodes,
+                            links: graph.links,
+                            categories: graph.categories,
+                            roam: true,
+                            label: {
+                                position: 'right',
+                                formatter: '{b}'
+                            },
+                            lineStyle: {
+                                color: 'source',
+                                curveness: 0.3
+                            },
+                            emphasis: {
+                                focus: 'adjacency',
+                                lineStyle: {
+                                    width: 10
+                                }
+                            }
+                        }
+                    ]
+                };
+                myChart.setOption(option);          
+            });
+            if (option && typeof option === 'object') {
+                myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
         },
         // 文本和视频稿件切换
         togGJ(name){
@@ -218,14 +344,21 @@ export default {
         // 
         searchInfo(id){
             this.suCaiType = id
-            if(this.GJInfo.GJTag=="本地素材"){
-                this.selectAll(1)
-            }else{
-                this.suCaiList=[]
-                if(this.suCaiType!=4){
-                    this.querySuCai()
+            this.$nextTick(()=>{
+                if(this.GJInfo.GJTag=="本地素材"){
+                    this.selectAll(1)
+                }else{
+                    if(this.searchname==""){
+                        return
+                    }
+                    this.suCaiList=[]
+                    if(this.suCaiType!=4){
+                        this.querySuCai()
+                    }else{
+                        this.getTuPu()
+                    }
                 }
-            }
+            });
         },
         changeActive(event){
             event.currentTarget.className = 'sucai-show boxShadow'
