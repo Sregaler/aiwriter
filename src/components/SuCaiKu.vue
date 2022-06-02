@@ -18,6 +18,7 @@
                 <span class="GJ-top-s2" :class="{'GJ-top-s2-a':suCaiType==1}" @click="searchInfo(1)">图片</span>
                 <span class="GJ-top-s2" :class="{'GJ-top-s2-a':suCaiType==2}" @click="searchInfo(2)">视频</span>
                 <span class="GJ-top-s2" :class="{'GJ-top-s2-a':suCaiType==3}" @click="searchInfo(3)" v-if="GJFont[0]">音频</span>
+                <span class="GJ-top-s2" :class="{'GJ-top-s2-a':suCaiType==4}" @click="searchInfo(4)" v-if="!GJFont[0]">主题</span>
                 <button class="GJ-top-bt" @click="searchByname">搜索</button>
                 <input class="GJ-top-in" type="text" v-model="searchname" placeholder="输入搜索素材的名称">
             </div>
@@ -33,12 +34,12 @@
                 <div class="clearfix sucai-ul" style="width:810px;">
                     <div class="sucai-show" v-for="item in suCaiList" :key="item.mid" @mouseover="changeActive($event)" @mouseleave="removeActive($event)">
                         <img :src="item.imgurl" alt="" @click="showMore(item.m_type,item.content,item.m_name)">
-                        <span class="sucai-show-title" :title="item.m_name">{{item.m_name}}</span>
+                        <span class="sucai-show-title" :title="item.m_name">{{item.m_name.length>10?item.m_name.substring(0,11):item.m_name}}</span>
                         <div class="el-icon-picture sucai-show-time" style="margin:0px 15px;" v-if="item.m_type==1">&nbsp;{{item.update_time}}</div>
                         <div class="el-icon-video-camera-solid sucai-show-time" style="margin:0px 15px;" v-if="item.m_type==2">&nbsp;{{item.update_time}}</div>
                         <div class="el-icon-mic sucai-show-time" style="margin:0px 15px;" v-if="item.m_type==3">&nbsp;{{item.update_time}}</div>
                         <div class="sucai-show-more" @click="item.hide=!item.hide">...</div>
-                        <div class="GJ-sample-select" v-show="!item.hide">
+                        <div class="GJ-sample-select" v-show="!item.hide && GJInfo.GJTag=='本地素材'">
                             <!-- <div>下载</div>
                             <div>重命名</div> -->
                             <div @click="deleteById(item.mid)">删除</div>
@@ -52,7 +53,7 @@
                     @current-change="currentPage"
                     @prev-click="prevPage"
                     @next-click="nextPage"
-                    :total="totalPage">
+                    :total="totalPage" v-show="GJInfo.GJTag=='本地素材'">
                 </el-pagination>
             </div>
             <div>
@@ -99,27 +100,98 @@ export default {
             currentTitle:"",
             currentUrl:"",
             ShowBtn:false,
-            searchname:""
+            searchname:"",
+
         }
     },
     methods:{
+        //云端素材
+        querySuCai(){
+            if(this.searchname.trim()==""){
+                    return
+            }
+            if(this.suCaiType==2){
+                var formFile = new window.FormData();
+                formFile.append("num",12)
+                formFile.append("query",this.searchname)
+                formFile.append("end_date","20220520")
+                axios.post("/baidu/search/video_search",formFile).then(res=>{
+                    this.suCaiList = []
+                    var data = JSON.parse(res.data.t)
+                    console.log(data)
+                    if(data.content.length==0||data.error_message!="success"){
+                        this.$message.info("未检索到相关视频");
+                        return
+                    }
+                    for(let info of data.content){
+                        info["hide"]=true
+                        info["imgurl"] = info.poster
+                        info["m_type"] = 2
+                        info["m_name"] = info.title
+                        info["content"] = info.play_url
+                        info["update_time"] = info.pdate
+                        this.suCaiList.push(info)
+                    }
+                }).catch(e=>{
+                })
+            }else{
+                var formFile = new window.FormData();
+                formFile.append("keyWord", this.searchname);
+                if(this.searchname.trim()==""){
+                    return
+                }
+                formFile.append("num", 12); //加入文件对象
+                this.suCaiList = []
+                axios
+                    .post("/reptile/baidu_image", formFile)
+                    .then((res) => {
+                    var data = res.data;
+                    if(data.ok){
+                        for(let info of data.t){
+                            info["hide"]=true
+                            info["imgurl"] = info.url
+                            info["m_type"] = 1
+                            info["m_name"] = this.searchname
+                            info["content"] = ""
+                            info["update_time"] = ""
+                            this.suCaiList.push(info)
+                        }
+                    }else{
+                        this.$message.warning("未检索到相关图片");
+                    }
+                })
+                    .catch((e) => {
+                    this.$message.warning("未检索到相关图片");
+                    console.log(e);
+                });
+            }
+        },
         // 搜索素材
         searchByname(){
             if(this.searchname==""){
                 return
             }
-            this.selectAll(1)
+            if(this.GJInfo.GJTag=="本地素材"){
+                this.selectAll(1)
+            }else if(this.suCaiType==4){
+                return
+            }else{
+                this.querySuCai()
+            }
         },
         // 文本和视频稿件切换
         togGJ(name){
             this.GJInfo.GJTag = name
+            this.suCaiType = 1
+            this.suCaiList = []
+            this.searchname=""
             if(name=='本地素材'){
                 this.GJFont = [true,false]
                 this.GJImg=[require("../assets/icon/本地素材.svg"),require("../assets/icon/素材1.svg")]
+                this.selectAll(1)
             }else{
                 this.GJFont = [false,true]
                 this.GJImg=[require("../assets/icon/本地素材1.svg"),require("../assets/icon/素材.svg")]
-                this.suCaiType = 1
             }
         },
         //显示视频，音频详情
@@ -146,7 +218,14 @@ export default {
         // 
         searchInfo(id){
             this.suCaiType = id
-            this.selectAll(1)
+            if(this.GJInfo.GJTag=="本地素材"){
+                this.selectAll(1)
+            }else{
+                this.suCaiList=[]
+                if(this.suCaiType!=4){
+                    this.querySuCai()
+                }
+            }
         },
         changeActive(event){
             event.currentTarget.className = 'sucai-show boxShadow'
@@ -179,7 +258,6 @@ export default {
                 }
                 this.totalPage = res.data.total
             }).catch(e=>{
-                console.log(e)
             })
         },
         deleteById(id){
@@ -348,6 +426,7 @@ export default {
     overflow-y: auto;
     padding:30px 30px 0px;
     padding-bottom: 80px;
+    min-height: 600px;
 }
 .el-pagination{
         text-align: center;
