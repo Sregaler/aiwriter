@@ -232,6 +232,8 @@ export default {
         this.$bus.$emit('navTag',"稿件转视频")
         this.$router.replace({name:"testtovideo"});
         return
+      }else if(name=='视频转GIF'||name=='动态图表'||name=='语音播报'||name=='清晰度提升'){
+        this.$message.info("该功能正在研制中")
       }
       switch (name) {
         case "热点发现":
