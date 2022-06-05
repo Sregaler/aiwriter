@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="10.3.73.64/data1/project/SYJ/javaWork/Aiwriter/">
+    <serverData>
+      <paths name="10.3.73.64/data1/project/SYJ/javaWork/Aiwriter/">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/data1/project/SYJ/javaWork/Aiwriter/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
