@@ -203,6 +203,54 @@
       <el-button class="btn1-right" @click="closeModal('突发事件')">取消</el-button>
     </div>
 
+    <!-- 地震 -->
+    <div class="TQYB" v-show="modalControl['地震速报']">
+      <span class="TQYB-s1">地震速报</span>
+      <i class="el-icon-close close-modal" @click="closeModal('地震速报')"></i>
+      <span class="TQYB-s2">请选择要创建的&nbsp;<b>模版</b>&nbsp;及&nbsp;<b>数据</b></span>
+      <span class="TQYB-s3">1.文章模板</span>
+      <el-radio-group v-model="selectInfo['地震速报'].title" class="TQYB-radio">
+        <el-radio-button label="地震速报"></el-radio-button>
+      </el-radio-group>
+      <span class="TQYB-s4">2.选择相关标题</span>
+      <div class="TQYB-cascader">
+        <el-select v-model="selectInfo['地震速报'].address" placeholder="请选择">
+          <el-option
+            v-for="item in selectInfo['地震速报'].option"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </div>
+      <el-button type="primary" class="btn1-left" @click="generateTxt(selectInfo['地震速报'].title)">成稿</el-button>
+      <el-button class="btn1-right" @click="closeModal('地震速报')">取消</el-button>
+    </div>
+
+    <!-- 爆炸 -->
+    <div class="TQYB" v-show="modalControl['爆炸事件']">
+      <span class="TQYB-s1">爆炸事件</span>
+      <i class="el-icon-close close-modal" @click="closeModal('爆炸事件')"></i>
+      <span class="TQYB-s2">请选择要创建的&nbsp;<b>模版</b>&nbsp;及&nbsp;<b>数据</b></span>
+      <span class="TQYB-s3">1.文章模板</span>
+      <el-radio-group v-model="selectInfo['爆炸事件'].title" class="TQYB-radio">
+        <el-radio-button label="爆炸事件"></el-radio-button>
+      </el-radio-group>
+      <span class="TQYB-s4">2.选择相关标题</span>
+      <div class="TQYB-cascader">
+        <el-select v-model="selectInfo['爆炸事件'].address" placeholder="请选择">
+          <el-option
+            v-for="item in selectInfo['爆炸事件'].option"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </div>
+      <el-button type="primary" class="btn1-left" @click="generateTxt(selectInfo['爆炸事件'].title)">成稿</el-button>
+      <el-button class="btn1-right" @click="closeModal('爆炸事件')">取消</el-button>
+    </div>
+
     <div id="infoHander" style="display: none;"></div>  
   </div>
 </template>
@@ -302,7 +350,10 @@ export default {
       "公司财报":{title:"公司财报",address:{"year":"年度","id":""},option:[]},
       "天气预报":{title:"今日天气",address:[],option:[]},
       "天气预警":{title:"天气预警",address:[],option:[]},
-      "突发事件":{title:"突发事件",address:{"type":"yjyw","title":""},option:[]}},
+      "突发事件":{title:"突发事件",address:{"type":"yjyw","title":""},option:[]},
+      "地震速报":{title:"地震速报",address:"",option:[{label:"四川地政",value:"sc"},{label:"三栋地政",value:"sd"}]},
+      "爆炸事件":{title:"爆炸事件",address:"",option:[{label:"爆炸",value:"sc"},{label:"乌克兰爆炸",value:"sd"}]}
+      },
       years:[{value: '半年度',label: '半年度'}, {
           value: '年度',
           label: '年度'
@@ -332,12 +383,12 @@ export default {
       this.coverControl = false
     },
     popModal(name){
-      if(name=="地震速报"||name=="爆炸事件"){
-        return
-      }
       this.currentActive = name
       this.modalControl[name] = true
       this.coverControl = true
+      if(name=="地震速报"||name=="爆炸事件"){
+        return
+      }
       if(this.currentActive == "体育赛事"||this.currentActive == "天气预报"|| this.currentActive == "天气预警"){
           if(this.selectInfo[this.currentActive].option.length!=0){
             return
@@ -368,6 +419,7 @@ export default {
     },
     //获取突发事件标题
     getTFTitle(){
+      this.selectInfo[this.currentActive].address.title = ""
         axios.get(this.requestInfo[this.currentActive][0]+this.selectInfo[this.currentActive].address.type+'/1').then(res=>{
           if(res.data.ok){
             this.selectInfo[this.currentActive].option = []
@@ -506,6 +558,7 @@ export default {
               document.getElementById("infoHander").getElementsByTagName("p")[0].remove()
               msg.news_content = document.getElementById("infoHander").innerHTML
             }
+            console.log(msg)
             this.$router.push({
               name:'quickwriter',
               params:{

@@ -189,7 +189,6 @@ export default {
                 renderer: 'canvas',
                 useDirtyRect: false
             });
-            let app = {};
             let option;
 
             let height = dom.clientHeight
