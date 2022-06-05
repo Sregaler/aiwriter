@@ -384,7 +384,11 @@ export default {
   },
   activated() {
     if(this.modal=='突发事件' && this.qwtext){
-      console.log(this.qwtext)
+      this.qwtitle = this.qwtext.title;
+      document.getElementById("QWFormworkTextAi").innerHTML = this.qwtext.news_content
+      this.innerdata = this.qwtext.news_content
+    }
+    if((this.modal=='地震速报'||this.modal=='爆炸事件') && this.qwtext){
       this.qwtitle = this.qwtext.title;
       document.getElementById("QWFormworkTextAi").innerHTML = this.qwtext.news_content
       this.innerdata = this.qwtext.news_content
