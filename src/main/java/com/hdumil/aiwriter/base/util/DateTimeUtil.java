@@ -19,6 +19,18 @@ public class DateTimeUtil {
 		
 	}
 
+    //返回年月日 时分秒
+    public static String getSysTime(long timeInMillis){
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        Date date = new Date(timeInMillis);
+        String dateStr = sdf.format(date);
+
+        return dateStr;
+
+    }
+
     //返回年月日
     public static String getDate(){
 
@@ -28,8 +40,19 @@ public class DateTimeUtil {
         String dateStr = sdf.format(date);
 
         return dateStr;
-
     }
+
+    //返回年月日
+    public static String getDate(long timeInMillis){
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date date = new Date(timeInMillis);
+        String dateStr = sdf.format(date);
+
+        return dateStr;
+    }
+
     /**
      * 将指定的日期字符串转换成日期
      * @param dateStr 日期字符串

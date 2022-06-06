@@ -37,7 +37,7 @@ public class SearchController {
             return resultVo;
         }
         url_path = HttpUtil.appendUrl(url_path,map);
-        System.out.println(url_path);
+//        System.out.println(url_path);
         map.clear();
         map.put("Authorization", SearchAuthorization);
         map.put("Content-Type","application/json");
@@ -68,6 +68,7 @@ public class SearchController {
             return resultVo;
         }
         url_path = HttpUtil.appendUrl(url_path, map);
+//        System.out.println(url_path);
         map.clear();
         map.put("Authorization", SearchAuthorization);
         map.put("Content-Type","application/json");
@@ -121,6 +122,7 @@ public class SearchController {
         HashMap<String, String> map = new HashMap<>();
         map.put("Authorization", SearchAuthorization);
         map.put("Content-Type","application/json");
+//        System.out.println(url_path);
         String centent = HttpUtil.httpGetTrust(url_path, map);
         centent = CodeChangeUtils.decodeUnicode(centent);
         resultVo.setMess("资讯检索");
@@ -152,6 +154,7 @@ public class SearchController {
             return resultVo;
         }
         url_path = HttpUtil.appendUrl(url_path, map);
+//        System.out.println(url_path);
         map.clear();
         map.put("Authorization", SearchAuthorization);
         map.put("Content-Type","application/json");

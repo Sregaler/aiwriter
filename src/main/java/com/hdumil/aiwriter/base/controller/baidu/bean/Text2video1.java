@@ -32,11 +32,13 @@ public class Text2video1 {
     String totalDuration;
     String resolution;
     String ttsPer;
-    List<TracksTexts> trackTexts = new ArrayList<>();
+    List<TracksTexts> trackTexts;
 
     public Text2video1() {}
 
     public Text2video1(String htmlInput) {
+        trackTexts = new ArrayList<>();
+        trackTexts.add(new TracksTexts());
         //6.Jsoup解析html
         Document document = Jsoup.parse(htmlInput);
         //像js一样，通过id 获取文章列表元素对象
@@ -48,12 +50,8 @@ public class Text2video1 {
             Elements pItem_img = pItem.select("img");
             Elements pItem_video = pItem.select("video");
             Elements pItem_audio = pItem.select("audio");
+            TracksTexts tempTracksTexts = trackTexts.get(trackTexts.size()-1);
             if(!pItem_img.isEmpty()||!pItem_video.isEmpty()||!pItem_audio.isEmpty()){
-                if(trackTexts.isEmpty()){
-                    TracksTexts temp = new TracksTexts();
-                    trackTexts.add(temp);
-                }
-                TracksTexts temp = trackTexts.get(trackTexts.size()-1);
                 Track tempTrack = new Track();
                 if (!pItem_img.isEmpty()){
                     tempTrack.setUrl(pItem.select("img").attr("src"));
@@ -67,12 +65,17 @@ public class Text2video1 {
                     tempTrack.setUrl(pItem.select("audio").attr("src"));
                     tempTrack.setType("audio");
                 }
-                temp.tracks.add(tempTrack);
+                tempTracksTexts.tracks.add(tempTrack);
             }
-            else {
-                TracksTexts temp = new TracksTexts();
-                temp.text = pItem.text().trim();
-                trackTexts.add(temp);
+            else if(!pItem.text().trim().equals("")) {
+                if(tempTracksTexts.text == null){
+                    tempTracksTexts.text = pItem.text().trim();
+                }
+                else{
+                    TracksTexts temp = new TracksTexts();
+                    temp.text = pItem.text().trim();
+                    trackTexts.add(temp);
+                }
             }
         }
     }

@@ -74,10 +74,10 @@ public class TestBlog {
         NLPC.setAccessToken();
 //        ResultVo res = NLPC.create_vidpress("https://www.sohu.com/a/519497144_121106994", 60, "1280x720", 4);
 //        ResultVo res = NLPC.create_vidpress_alignmen_doc("https://www.sohu.com/a/519497144_121106994", 60, "1280x720", 4,null);
-//        ResultVo res = NLPC.query_vidpress("81660");  ///75921  75924  75925  76141  77003  81660
-//        ResultVo res = NLPC.delete_vidpress("75921");  ///75921  75924  75925  76141
+        ResultVo res = NLPC.query_vidpress("97636");  ///75921  75924  75925  76141  77003  81660  97636
+//        ResultVo res = NLPC.delete_vidpress("75921");  ///75921  75924  75925  76141  97636
 //        ResultVo res = NLPC.hot_list("国内");
-        ResultVo res = NLPC.vein_list("",1);
+//        ResultVo res = NLPC.vein_list("",1);
 //        ResultVo res = NLPC.hot_list_advanced("国内",null,null,null);
 //        ResultVo res = NLPC.news_summary(null,null,null);
         //下面都是图文素材转视频的测试

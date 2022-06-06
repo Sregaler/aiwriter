@@ -5,6 +5,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
 #    driver-class-name: com.mysql.jdbc.Driver  # 驱动程序通过SPI自动注册，通常不需要手动加载驱动程序类。
     url: jdbc:mysql://localhost:3306/aiwriter?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+#    url: jdbc:mysql://10.88.0.39:3306/aiwriter?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
     password: s546449346
     druid:

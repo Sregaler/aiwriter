@@ -25,8 +25,8 @@ public class ViewController {
 //        return "login";
 //    }
     @RequestMapping(value = "/login")
-    public String login2(){
-        return "login";
+    public void login2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/index.html").forward(request,response);  //转发
     }
     //转跳到首页
     @RequestMapping(value = "/")

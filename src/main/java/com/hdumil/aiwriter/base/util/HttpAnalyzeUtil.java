@@ -47,7 +47,7 @@ public class HttpAnalyzeUtil {
                 }
             }
             else {
-                news_list.append(pItem.text());
+                news_list.append("<p>").append(pItem.text()).append("<p>");
             }
         }
         return news_list.toString();

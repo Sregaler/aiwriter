@@ -50,11 +50,10 @@ public class AdminConfig  implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry interceptorRegistry) {
-//        interceptorRegistry.addInterceptor(new LoginHandlerInterceptor())
-//                .addPathPatterns("/**")
-//                .excludePathPatterns("/", "/code/**", "/baidu/retrieval/hot_list", "/login", "/register", "/user/login",
-//                        "/user/register", "/user/loginOut", "/css/**", "/js/**", "/img/**",
-//                        "/baidu/retrieval/create_vidpress_alignmen");
+        interceptorRegistry.addInterceptor(new LoginHandlerInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/", "/code/**", "/login", "/register", "/user/login",
+                        "/user/register", "/user/loginOut", "/css/**", "/js/**", "/img/**");
     }
 
     @Override

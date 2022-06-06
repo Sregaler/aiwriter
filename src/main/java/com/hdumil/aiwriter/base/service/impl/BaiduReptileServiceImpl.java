@@ -30,7 +30,7 @@ public class BaiduReptileServiceImpl implements BaiduReptileService {
         for (int i = 0; i < 6; i++) {
 //            String url = "https://image.baidu.com/search/index?tn=baiduimage&ipn=r&ct=201326592&cl=2&lm=-1&st=-1&fm=index&fr=&hs=0&xthttps=111110&sf=1&fmq=&pv=&ic=0&nc=1&z=&se=1&showtab=0&fb=0&width=&height=&face=0&istype=2&ie=utf-8&pn=1&word=" + SerchWord;
             String url = "https://image.baidu.com/search/index?tn=baiduimage&ps=1&ct=201326592&lm=-1&cl=2&nc=1&ie=utf-8&dyTabStr=MCwzLDIsMSw3LDgsNCw2LDUsOQ%3D%3D&word=" + SerchWord;
-//            System.out.println(url);
+            System.out.println(url);
             String xmlSource = HttpUtil.httpGetByJsoup(url,null);
 //            xmlSource = StringEscapeUtils.unescapeHtml3(xmlSource);
 //            System.out.println(xmlSource);
