@@ -645,7 +645,7 @@ export default {
         }
       }
       formFile.append("num", 10); //加入文件对象
-      formFile.append("random", 1);
+      // formFile.append("random", 1);
       axios
         .post("/reptile/baidu_image", formFile)
         .then((res) => {

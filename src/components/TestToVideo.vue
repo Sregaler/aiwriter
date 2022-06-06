@@ -70,9 +70,9 @@
             <span class="video-type-inner-s2">视频比例</span>
             <div>
               <el-radio-group v-model="videoInfo.type">
-                <el-radio :label="'640×360'">640×360</el-radio>
-                <el-radio :label="'1280×720'">1280×720</el-radio>
-                <el-radio :label="'1920×1080'">1920×1080</el-radio>
+                <el-radio :label="'640x360'">640x360</el-radio>
+                <el-radio :label="'1280x720'">1280x720</el-radio>
+                <el-radio :label="'1920x1080'">1920x1080</el-radio>
               </el-radio-group>
             </div>
             <span class="video-type-inner-s2">视频比例</span>
@@ -108,7 +108,7 @@ export default {
   data() {
     return {
       activeName: "first",
-      videoInfo: { time: 60, type: "640×360", timetype: 3, sound: 0 },
+      videoInfo: { time: 60, type: "640x360", timetype: 3, sound: 0 },
       videoShowBtn:false,
       pageUrl:"",
       docUrl:"",
@@ -199,9 +199,10 @@ export default {
           this.videoShowBtn = true
           var formFile = new window.FormData()
           formFile.append("reqHtml",this.writerUrl)
-          formFile.append("duration",this.videoInfo.time)
+          formFile.append("totalDuration",this.videoInfo.time)
           formFile.append("resolution",this.videoInfo.type)
           formFile.append("ttsPer",this.videoInfo.sound)
+          formFile.append("videoTitle",this.$route.params.title)
           // axios.post("/baidu/retrieval/create_vidpress_alignmen_html",{reqHtml:this.writerUrl,duration:this.videoInfo.time,resolution:this.videoInfo.type,ttsPer:this.videoInfo.sound}).then(res=>{
           axios.post("/baidu/retrieval/create_vidpress_alignmen_html",formFile).then(res=>{
             if(res.data.ok){
