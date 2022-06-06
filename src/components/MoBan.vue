@@ -102,7 +102,7 @@
       <span class="TQYB-s3">1.文章模板</span>
       <el-radio-group @change="getTYInfo('体育赛事')" v-model="selectInfo['体育赛事'].title" class="TQYB-radio">
         <el-radio-button label="篮球战报"></el-radio-button>
-        <el-radio-button label="足球战报"></el-radio-button>
+        <!-- <el-radio-button label="足球战报"></el-radio-button> -->
       </el-radio-group>
       <span class="TQYB-s4">2.赛事选择</span>
       <div class="TQYB-cascader">
@@ -515,10 +515,10 @@ export default {
           }
         }).catch(err=>{console.log(err.data)})
       }else if(this.currentActive == "股市收盘"){
-        formFile.append("stock_code_list", this.selectInfo[this.currentActive].address[1]);
+        formFile.append("stock_code_list", this.selectInfo[this.currentActive].address);
         axios.post(this.requestInfo[this.currentActive][1],formFile).then(res=>{
           if(res.data.ok){
-            var msg = JSON.parse(res.data.t) 
+            var msg = JSON.parse(res.data.t)
             this.$router.push({
               name:'quickwriter',
               params:{

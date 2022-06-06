@@ -174,7 +174,7 @@
                   <p>{{ item.summary }}</p>
                   <a href="" @click.prevent="quoteHot(item.name)">引用</a>
                   <a
-                    href="http://k.sina.com.cn/article_2814131830_a7bc3e7600100nvb9.html"
+                    :href="item.related_urls[0].url"
                     target="_blank"
                     >更多资讯</a
                   >

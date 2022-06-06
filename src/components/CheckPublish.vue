@@ -155,8 +155,8 @@
           <div class="check-title">{{ checkInfoBtn }}</div>
           <div class="check-select clearfix">
             <span @click="sendCheckMsg">重新检测</span>
-            <span @click="removeAllCheck">全部忽略</span>
-            <span @click="modifyAllCheck">全部纠错</span>
+            <!-- <span @click="removeAllCheck">全部忽略</span> -->
+            <!-- <span @click="modifyAllCheck">全部纠错</span> -->
           </div>
           <div class="check-show">
             <div
@@ -605,6 +605,7 @@ export default {
             name: "testtovideo",
             params: {
               content: content,
+              title:this.title
             },
           });
         } else if (myimg.length <= 0) {
@@ -813,7 +814,7 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.windowScroll);
-    this.sendCheckMsg();
+    // this.sendCheckMsg();
   },
 };
 </script>
