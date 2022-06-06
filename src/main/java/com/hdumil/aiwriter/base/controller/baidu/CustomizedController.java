@@ -89,107 +89,107 @@ public class CustomizedController {
         map.put("end_date", end_date);
         map.put("event_type", event_type);
         //调用接口获取信息
-        ResultVo resultVo = AuthService.jsonPostUrl("天气预警文章-定制版", url, accessToken, map,"UTF-8");
-//        ResultVo resultVo = new ResultVo();
-//        resultVo.setMess("天气预警文章-定制版");
-//        resultVo.setOk(true);
-//        resultVo.setT("{" +
-//                "    \"status\": 0," +
-//                "    \"source\": \"国家预警中心\"," +
-//                "    \"error_message\": \"success\"," +
-//                "    \"content\": {" +
-//                "        \"msg_type_statis\": {" +
-//                "            \"Cancel\": 1," +
-//                "            \"Alert\": 1" +
-//                "        }," +
-//                "        \"num\": 2," +
-//                "        \"list\": [" +
-//                "            {" +
-//                "                \"title\": \"【雷雨大风预警】8月30日珠海市气象台发布雷雨大风黄色预警\"," +
-//                "                \"content\": [" +
-//                "                    {" +
-//                "                        \"text\": \"珠海市气象台于08月30日12时55分发布珠海市雷雨大风黄色预警信号：\"" +
-//                "                    }," +
-//                "                    {" +
-//                "                        \"text\": \"请注意防御。\"" +
-//                "                    }," +
-//                "                    {" +
-//                "                        \"text\": \"（信息来源：国家预警发布中心）\"" +
-//                "                    }," +
-//                "                    {" +
-//                "                        \"image\": \"/upload/temp_public\\\\2022-03-01\\\\16461005686764.jpg\"" +
-//                "                    }," +
-//                "                    {" +
-//                "                        \"text\": \"<hr />\"" +
-//                "                    }," +
-//                "                    {" +
-//                "                        \"text\": \"<h3>防御指南</h3>\"" +
-//                "                    }," +
-//                "                    {" +
-//                "                        \"image\": \"/upload/temp_public\\\\2022-03-01\\\\16461004775043.jpg\"" +
-//                "                    }" +
-//                "                ]," +
-//                "                \"source\": \"http://www.12379.cn/html/new2018/alarmcontent.shtml?file=44040041600000_20210830130023.html\"," +
-//                "                \"public_time\": \"2021-08-30 13:06:10\"," +
-//                "                \"tag\": {" +
-//                "                    \"sender\": \"珠海市气象台\"," +
-//                "                    \"msg_type\": \"Alert\"," +
-//                "                    \"effective\": \"2021-08-30 12:55:00\"," +
-//                "                    \"level\": \"Yellow\"," +
-//                "                    \"region\": [" +
-//                "                        \"珠三角\"" +
-//                "                    ]," +
-//                "                    \"location\": [" +
-//                "                        {" +
-//                "                            \"province\": \"广东省\"," +
-//                "                            \"city\": \"珠海市\"," +
-//                "                            \"county\": \"城区\"" +
-//                "                        }" +
-//                "                    ]," +
-//                "                    \"event_type\": \"雷雨大风\"" +
-//                "                }," +
-//                "                \"date\": \"2021-08-30\"" +
-//                "            }," +
-//                "            {" +
-//                "                \"title\": \"【雷雨大风预警信息解除】8月30日珠海市气象台解除雷雨大风黄色预警\"," +
-//                "                \"content\": [" +
-//                "                    {" +
-//                "                        \"text\": \"<b>【预警解除】</b>珠海市气象台08月30日15时13分解除珠海市雷雨大风黄色预警\"" +
-//                "                    }," +
-//                "                    {" +
-//                "                        \"text\": \"（信息来源：国家预警发布中心）\"" +
-//                "                    }," +
-//                "                    {" +
-//                "                        \"text\": \"<hr />\"" +
-//                "                    }" +
-//                "                ]," +
-//                "                \"source\": \"http://www.12379.cn/html/new2018/alarmcontent.shtml?file=44040041600000_20210830151103.html\"," +
-//                "                \"public_time\": \"2021-08-30 15:18:22\"," +
-//                "                \"tag\": {" +
-//                "                    \"sender\": \"珠海市气象台\"," +
-//                "                    \"msg_type\": \"Cancel\"," +
-//                "                    \"effective\": \"2021-08-30 15:10:00\"," +
-//                "                    \"level\": \"Yellow\"," +
-//                "                    \"region\": [" +
-//                "                        \"珠三角\"" +
-//                "                    ]," +
-//                "                    \"location\": [" +
-//                "                        {" +
-//                "                            \"province\": \"广东省\"," +
-//                "                            \"city\": \"珠海市\"," +
-//                "                            \"county\": \"城区\"" +
-//                "                        }" +
-//                "                    ]," +
-//                "                    \"event_type\": \"雷雨大风\"" +
-//                "                }," +
-//                "                \"date\": \"2021-08-30\"" +
-//                "            }" +
-//                "        ]," +
-//                "        \"event_type_statis\": {" +
-//                "            \"雷雨大风\": 2" +
-//                "        }" +
-//                "    }" +
-//                "}");
+//        ResultVo resultVo = AuthService.jsonPostUrl("天气预警文章-定制版", url, accessToken, map,"UTF-8");
+        ResultVo resultVo = new ResultVo();
+        resultVo.setMess("天气预警文章-定制版");
+        resultVo.setOk(true);
+        resultVo.setT("{" +
+                "    \"status\": 0," +
+                "    \"source\": \"国家预警中心\"," +
+                "    \"error_message\": \"success\"," +
+                "    \"content\": {" +
+                "        \"msg_type_statis\": {" +
+                "            \"Cancel\": 1," +
+                "            \"Alert\": 1" +
+                "        }," +
+                "        \"num\": 2," +
+                "        \"list\": [" +
+                "            {" +
+                "                \"title\": \"【雷雨大风预警】8月30日珠海市气象台发布雷雨大风黄色预警\"," +
+                "                \"content\": [" +
+                "                    {" +
+                "                        \"text\": \"珠海市气象台于08月30日12时55分发布珠海市雷雨大风黄色预警信号：\"" +
+                "                    }," +
+                "                    {" +
+                "                        \"text\": \"请注意防御。\"" +
+                "                    }," +
+                "                    {" +
+                "                        \"text\": \"（信息来源：国家预警发布中心）\"" +
+                "                    }," +
+                "                    {" +
+                "                        \"image\": \"/upload/temp_public\\\\2022-03-01\\\\16461005686764.jpg\"" +
+                "                    }," +
+                "                    {" +
+                "                        \"text\": \"<hr />\"" +
+                "                    }," +
+                "                    {" +
+                "                        \"text\": \"<h3>防御指南</h3>\"" +
+                "                    }," +
+                "                    {" +
+                "                        \"image\": \"/upload/temp_public\\\\2022-03-01\\\\16461004775043.jpg\"" +
+                "                    }" +
+                "                ]," +
+                "                \"source\": \"http://www.12379.cn/html/new2018/alarmcontent.shtml?file=44040041600000_20210830130023.html\"," +
+                "                \"public_time\": \"2021-08-30 13:06:10\"," +
+                "                \"tag\": {" +
+                "                    \"sender\": \"珠海市气象台\"," +
+                "                    \"msg_type\": \"Alert\"," +
+                "                    \"effective\": \"2021-08-30 12:55:00\"," +
+                "                    \"level\": \"Yellow\"," +
+                "                    \"region\": [" +
+                "                        \"珠三角\"" +
+                "                    ]," +
+                "                    \"location\": [" +
+                "                        {" +
+                "                            \"province\": \"广东省\"," +
+                "                            \"city\": \"珠海市\"," +
+                "                            \"county\": \"城区\"" +
+                "                        }" +
+                "                    ]," +
+                "                    \"event_type\": \"雷雨大风\"" +
+                "                }," +
+                "                \"date\": \"2021-08-30\"" +
+                "            }," +
+                "            {" +
+                "                \"title\": \"【雷雨大风预警信息解除】8月30日珠海市气象台解除雷雨大风黄色预警\"," +
+                "                \"content\": [" +
+                "                    {" +
+                "                        \"text\": \"<b>【预警解除】</b>珠海市气象台08月30日15时13分解除珠海市雷雨大风黄色预警\"" +
+                "                    }," +
+                "                    {" +
+                "                        \"text\": \"（信息来源：国家预警发布中心）\"" +
+                "                    }," +
+                "                    {" +
+                "                        \"text\": \"<hr />\"" +
+                "                    }" +
+                "                ]," +
+                "                \"source\": \"http://www.12379.cn/html/new2018/alarmcontent.shtml?file=44040041600000_20210830151103.html\"," +
+                "                \"public_time\": \"2021-08-30 15:18:22\"," +
+                "                \"tag\": {" +
+                "                    \"sender\": \"珠海市气象台\"," +
+                "                    \"msg_type\": \"Cancel\"," +
+                "                    \"effective\": \"2021-08-30 15:10:00\"," +
+                "                    \"level\": \"Yellow\"," +
+                "                    \"region\": [" +
+                "                        \"珠三角\"" +
+                "                    ]," +
+                "                    \"location\": [" +
+                "                        {" +
+                "                            \"province\": \"广东省\"," +
+                "                            \"city\": \"珠海市\"," +
+                "                            \"county\": \"城区\"" +
+                "                        }" +
+                "                    ]," +
+                "                    \"event_type\": \"雷雨大风\"" +
+                "                }," +
+                "                \"date\": \"2021-08-30\"" +
+                "            }" +
+                "        ]," +
+                "        \"event_type_statis\": {" +
+                "            \"雷雨大风\": 2" +
+                "        }" +
+                "    }" +
+                "}");
         return resultVo;
     }
 
@@ -365,7 +365,7 @@ public class CustomizedController {
         if(start_date==null){
             long nowTime = System.currentTimeMillis();
             end_date = DateTimeUtil.getDate(nowTime);
-            start_date = DateTimeUtil.getDate(nowTime - 1000L*3600L*24L*30L);
+            start_date = DateTimeUtil.getDate(nowTime - 1000L*3600L*24L*366L);
         }
         map.put("start_date", start_date);
         map.put("end_date", end_date);

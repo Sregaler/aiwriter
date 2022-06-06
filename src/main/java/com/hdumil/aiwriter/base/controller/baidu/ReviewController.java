@@ -62,24 +62,24 @@ public class ReviewController {
         }
         map.put("data", req);
         //调用接口获取信息
-//        ResultVo resultVo = AuthService.jsonPostUrl("文本智能校审", url, accessToken, map,null);
-        ResultVo resultVo = new ResultVo();
-        resultVo.setOk(true);
-        resultVo.setMess("文本智能校审");
-        resultVo.setT("{\"msg\":\"success\",\"code\":0,\"output\":[" +
-                "{" +
-                "\"content\":\"百度是一家人工只能公司，360是一家人工智能工司，腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工只能公司，腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工智能公司\",\"has_error\":true," +
-                "" +
-                "\"details\":[{\"sentence_id\":0,\"sentence\":\"百度是一家人工只能公司，\",\"sentence_fixed\":\"百度是一家人工智能公司，\"," +
-                "\"fragments\":[{\"frag_ori\":\"人工只能\",\"frag_fixed\":\"人工智能\",\"offset\":15,\"cont_offset\":15,\"length\":12,\"score\":0.0,\"score_delta\":0.0,\"type\":8,\"operation\":2,\"explain\":\"建议用“人工智能”替换“人工只能”\",\"state\":4,\"label\":\"010200\"}]}," +
-                "" +
-                "{\"sentence_id\":1,\"sentence\":\"360是一家人工智能工司，\",\"sentence_fixed\":\"360是一家人工智能公司，\",\"fragments\":[{\"frag_ori\":\"工司\",\"frag_fixed\":\"公司\",\"offset\":24,\"cont_offset\":60,\"length\":6,\"score\":4.411464691162109,\"score_delta\":4.326484680175781,\"type\":3,\"operation\":2,\"explain\":\"建议用“公司”替换“工司”\",\"state\":2,\"label\":\"010200\"}]},{\"sentence_id\":2,\"sentence\":\"腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工只能公司，\",\"sentence_fixed\":\"腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工智能公司，\",\"fragments\":[{\"frag_ori\":\"人工只能\",\"frag_fixed\":\"人工智能\",\"offset\":81,\"cont_offset\":150,\"length\":12,\"score\":0.0,\"score_delta\":0.0,\"type\":8,\"operation\":2,\"explain\":\"建议用“人工智能”替换“人工只能”\",\"state\":4,\"label\":\"010200\"}]}]}," +
-                "" +
-                "{\"content\":\"谷歌是一家人工智能公司\",\"content_len\":33,\"content_fixed\":\"谷歌是一家人工智能公司\",\"has_error\":false}]," +
-                "" +
-                "\"user_id\":\"text_correction\",\"error_num\":3" +
-                "" +
-                "}");
+        ResultVo resultVo = AuthService.jsonPostUrl("文本智能校审", url, accessToken, map,null);
+//        ResultVo resultVo = new ResultVo();
+//        resultVo.setOk(true);
+//        resultVo.setMess("文本智能校审");
+//        resultVo.setT("{\"msg\":\"success\",\"code\":0,\"output\":[" +
+//                "{" +
+//                "\"content\":\"百度是一家人工只能公司，360是一家人工智能工司，腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工只能公司，腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工智能公司\",\"has_error\":true," +
+//                "" +
+//                "\"details\":[{\"sentence_id\":0,\"sentence\":\"百度是一家人工只能公司，\",\"sentence_fixed\":\"百度是一家人工智能公司，\"," +
+//                "\"fragments\":[{\"frag_ori\":\"人工只能\",\"frag_fixed\":\"人工智能\",\"offset\":15,\"cont_offset\":15,\"length\":12,\"score\":0.0,\"score_delta\":0.0,\"type\":8,\"operation\":2,\"explain\":\"建议用“人工智能”替换“人工只能”\",\"state\":4,\"label\":\"010200\"}]}," +
+//                "" +
+//                "{\"sentence_id\":1,\"sentence\":\"360是一家人工智能工司，\",\"sentence_fixed\":\"360是一家人工智能公司，\",\"fragments\":[{\"frag_ori\":\"工司\",\"frag_fixed\":\"公司\",\"offset\":24,\"cont_offset\":60,\"length\":6,\"score\":4.411464691162109,\"score_delta\":4.326484680175781,\"type\":3,\"operation\":2,\"explain\":\"建议用“公司”替换“工司”\",\"state\":2,\"label\":\"010200\"}]},{\"sentence_id\":2,\"sentence\":\"腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工只能公司，\",\"sentence_fixed\":\"腾讯是一家人工智能公司腾讯是一家人工智能公司腾讯是一家人工智能公司，\",\"fragments\":[{\"frag_ori\":\"人工只能\",\"frag_fixed\":\"人工智能\",\"offset\":81,\"cont_offset\":150,\"length\":12,\"score\":0.0,\"score_delta\":0.0,\"type\":8,\"operation\":2,\"explain\":\"建议用“人工智能”替换“人工只能”\",\"state\":4,\"label\":\"010200\"}]}]}," +
+//                "" +
+//                "{\"content\":\"谷歌是一家人工智能公司\",\"content_len\":33,\"content_fixed\":\"谷歌是一家人工智能公司\",\"has_error\":false}]," +
+//                "" +
+//                "\"user_id\":\"text_correction\",\"error_num\":3" +
+//                "" +
+//                "}");
         try {
             JSONArray resJson = new JSONArray();
             JSONObject jsonObject = new JSONObject((String) resultVo.getT());

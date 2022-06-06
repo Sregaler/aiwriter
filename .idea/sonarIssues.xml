@@ -358,6 +358,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../ruoyi-plus/ruoyi-admin/src/main/resources/application-druid.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../ruoyi-plus/ruoyi-admin/src/main/resources/application.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../secondkill/pom.xml">
           <value>
             <set />

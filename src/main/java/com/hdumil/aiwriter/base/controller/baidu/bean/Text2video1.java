@@ -71,6 +71,9 @@ public class Text2video1 {
                 if(tempTracksTexts.text == null){
                     tempTracksTexts.text = pItem.text().trim();
                 }
+                else if(tempTracksTexts.tracks.size()==0){
+                    tempTracksTexts.text = tempTracksTexts.text + pItem.text().trim();
+                }
                 else{
                     TracksTexts temp = new TracksTexts();
                     temp.text = pItem.text().trim();
