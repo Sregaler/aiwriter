@@ -12,6 +12,7 @@ import com.hdumil.aiwriter.base.service.impl.BaiduReptileServiceImpl;
 import com.hdumil.aiwriter.base.service.impl.NationalEmergencyReptileServiceImpl;
 import com.hdumil.aiwriter.base.util.HttpAnalyzeUtil;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Test;
 
 import javax.servlet.ServletContext;
@@ -150,7 +151,8 @@ public class TestBlog {
 //        stock_code_list.add("006606");
 //        stock_code_list.add("003185");
 //        ResultVo res = NLPC.company_financial_report("年度", stock_code_list,"2020-01-01","2021-01-02");
-        ResultVo res = NLPC.shares("收盘","600036","2020-01-01","2021-01-02");
+//        ResultVo res = NLPC.shares("收盘","600036","2020-01-01","2021-01-02");
+        ResultVo res = NLPC.earthquake();
 //        List<String> lis = new ArrayList<>();
 //        lis.add("002410");
 //        ResultVo res = NLPC.company_financial_report("年度", lis,"2020","2020");
@@ -160,7 +162,7 @@ public class TestBlog {
             System.out.println(res.getMess());
 
 //        JSONObject jsonObject = new JSONObject((String) res.getT());
-//        System.out.println(jsonObject.getString("status"));
+//        System.out.println(jsonObject.getString("contents"));
     }
 
     @Test
