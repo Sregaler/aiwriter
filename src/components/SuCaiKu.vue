@@ -198,7 +198,7 @@ export default {
             let bound = Math.min(height, width)
 
             myChart.showLoading();
-            $.get("http://127.0.0.1:8080/baidu/search/correlation_list",{query:this.searchname}, (data)=>{
+            $.get("/baidu/search/correlation_list",{query:this.searchname}, (data)=>{
                 var data = JSON.parse(data.t)
                 data.data = {}
                 data.data.content = data.content
