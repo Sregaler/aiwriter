@@ -216,15 +216,7 @@ public class RetrievalController {
     public ResultVo wait_query(ResultVo resultVo){
         if (!resultVo.isOk()) return resultVo;
         try {
-//            JSONObject jo = new JSONObject((String) resultVo.getT());
-//            if(jo.getInt("code") != 0) return resultVo;
-//            String start_s = jo.getJSONObject("data").getString("estimateStartTime");
-//            String end_s = jo.getJSONObject("data").getString("estimateFinishTime");
-//            Date d1 = DateTimeUtil.parseDate(start_s,"yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-//            Date d2 = DateTimeUtil.parseDate(end_s,"yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-//            Thread.sleep(DateTimeUtil.testBetweenMillis(d1,d2)+1000);
             Thread.sleep(5000);
-//            resultVo = query_vidpress(jo.getJSONObject("data").getString("jobId"));
             if(resultVo.getT().equals("0")){
                 resultVo.setT("{" +
                         "\"code\":0," +
@@ -276,6 +268,16 @@ public class RetrievalController {
                         "\"videoCoverAddr\":\"/upload/temp_public/2022-03-01/1646635384.jpg\"," +
                         "\"videoDuration\":75}" +
                         "}");
+            }
+            else {
+                JSONObject jo = new JSONObject((String) resultVo.getT());
+                if(jo.getInt("code") != 0) return resultVo;
+                String start_s = jo.getJSONObject("data").getString("estimateStartTime");
+                String end_s = jo.getJSONObject("data").getString("estimateFinishTime");
+                Date d1 = DateTimeUtil.parseDate(start_s,"yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+                Date d2 = DateTimeUtil.parseDate(end_s,"yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+//                Thread.sleep(DateTimeUtil.testBetweenMillis(d1,d2)+1000);
+                resultVo = query_vidpress(jo.getJSONObject("data").getString("jobId"));
             }
         } catch (Exception ex) {
             resultVo.setOk(false);

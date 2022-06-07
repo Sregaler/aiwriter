@@ -358,6 +358,26 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../exam-management-main/spring-module/exam-web/src/main/java/us/sep/KanaWebApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../exam-management-main/spring-module/exam-web/src/main/resources/config/application-default.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../exam-management-main/spring-module/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../exam-management-main/spring-module/util/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../ruoyi-plus/ruoyi-admin/src/main/resources/application-druid.yml">
           <value>
             <set />
